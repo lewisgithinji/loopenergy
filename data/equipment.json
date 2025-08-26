@@ -1,0 +1,82 @@
+[
+  {
+    "id": "exc-22t",
+    "name": "Excavator 22T",
+    "category": "Excavators",
+    "tonnage_or_capacity": "22 tons",
+    "typical_use": "Medium excavation, site preparation, trenching",
+    "image": "/images/equipment/excavator-22t.jpg",
+    "specs": {
+      "engine_power": "110 HP",
+      "bucket_capacity": "1.0 m³",
+      "max_dig_depth": "6.2 m",
+      "operating_weight": "22,000 kg"
+    },
+    "available": true,
+    "daily_rate_placeholder": 15000
+  },
+  {
+    "id": "exc-30t",
+    "name": "Excavator 30T",
+    "category": "Excavators", 
+    "tonnage_or_capacity": "30 tons",
+    "typical_use": "Heavy excavation, demolition, large construction",
+    "image": "/images/equipment/excavator-30t.jpg",
+    "specs": {
+      "engine_power": "150 HP",
+      "bucket_capacity": "1.4 m³",
+      "max_dig_depth": "7.5 m",
+      "operating_weight": "30,000 kg"
+    },
+    "available": true,
+    "daily_rate_placeholder": 20000
+  },
+  {
+    "id": "dozer-18t",
+    "name": "Dozer 18T",
+    "category": "Dozers",
+    "tonnage_or_capacity": "18 tons",
+    "typical_use": "Land clearing, road construction, grading",
+    "image": "/images/equipment/dozer-18t.jpg",
+    "specs": {
+      "engine_power": "130 HP",
+      "blade_capacity": "3.2 m³",
+      "operating_weight": "18,000 kg",
+      "ground_pressure": "0.65 kg/cm²"
+    },
+    "available": true,
+    "daily_rate_placeholder": 18000
+  },
+  {
+    "id": "grader",
+    "name": "Motor Grader",
+    "category": "Graders",
+    "tonnage_or_capacity": "14 tons",
+    "typical_use": "Road grading, fine grading, snow removal",
+    "image": "/images/equipment/grader.jpg",
+    "specs": {
+      "engine_power": "140 HP",
+      "blade_length": "3.7 m",
+      "operating_weight": "14,000 kg",
+      "max_speed": "40 km/h"
+    },
+    "available": true,
+    "daily_rate_placeholder": 16000
+  },
+  {
+    "id": "crane-30t",
+    "name": "Mobile Crane 30T",
+    "category": "Cranes",
+    "tonnage_or_capacity": "30 tons",
+    "typical_use": "Heavy lifting, construction, material handling",
+    "image": "/images/equipment/crane-30t.jpg",
+    "specs": {
+      "max_lift_capacity": "30,000 kg",
+      "boom_length": "31 m",
+      "max_radius": "26 m",
+      "engine_power": "200 HP"
+    },
+    "available": true,
+    "daily_rate_placeholder": 25000
+  }
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "id": "diesel-ago",
+    "name": "Automotive Gas Oil (Diesel)",
+    "category": "Petroleum",
+    "description": "High-quality diesel fuel for automotive and industrial applications",
+    "typical_uses": [
+      "Commercial vehicles",
+      "Construction equipment", 
+      "Industrial generators",
+      "Marine engines"
+    ],
+    "specifications": {
+      "sulphur_content": "< 50 ppm",
+      "cetane_number": "> 51",
+      "density": "820-860 kg/m³",
+      "flash_point": "> 55°C"
+    },
+    "packaging": ["Bulk delivery", "20L jerrycans", "200L drums"]
+  },
+  {
+    "id": "petrol-pms",
+    "name": "Premium Motor Spirit (Petrol)",
+    "category": "Petroleum",
+    "description": "Premium unleaded petrol for passenger vehicles",
+    "typical_uses": [
+      "Passenger cars",
+      "Motorcycles",
+      "Small generators",
+      "Garden equipment"
+    ],
+    "specifications": {
+      "octane_rating": "95 RON",
+      "lead_content": "< 0.005 g/L",
+      "density": "720-775 kg/m³",
+      "vapour_pressure": "45-90 kPa"
+    },
+    "packaging": ["Bulk delivery", "20L jerrycans", "200L drums"]
+  },
+  {
+    "id": "hfo",
+    "name": "Heavy Fuel Oil",
+    "category": "Petroleum",
+    "description": "Residual fuel oil for industrial and marine applications",
+    "typical_uses": [
+      "Power generation",
+      "Industrial boilers",
+      "Marine engines",
+      "Cement kilns"
+    ],
+    "specifications": {
+      "viscosity": "180 cSt @ 50°C",
+      "sulphur_content": "< 3.5%",
+      "flash_point": "> 60°C",
+      "water_content": "< 0.5%"
+    },
+    "packaging": ["Bulk delivery", "ISO containers"]
+  },
+  {
+    "id": "lpg",
+    "name": "Liquefied Petroleum Gas",
+    "category": "Gas",
+    "description": "Clean-burning LPG for residential and commercial use",
+    "typical_uses": [
+      "Cooking gas",
+      "Industrial heating",
+      "Automotive fuel",
+      "Welding and cutting"
+    ],
+    "specifications": {
+      "propane_content": "> 95%",
+      "butane_content": "< 5%",
+      "moisture": "< 50 ppm",
+      "hydrogen_sulphide": "< 50 ppm"
+    },
+    "packaging": ["6kg cylinders", "13kg cylinders", "48kg cylinders", "Bulk delivery"]
+  }
+]
