@@ -37,15 +37,18 @@ export default function HomePage() {
     <div>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900">
-        <div className="absolute inset-0 bg-black/20"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          className="absolute inset-0 z-0"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
+            backgroundImage: "url('/hero.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat"
           }}
         />
+        <div className="absolute inset-0 z-10 bg-gradient-to-br from-navy-900/70 via-navy-800/60 to-black/50"></div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -64,19 +67,19 @@ export default function HomePage() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-              <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white" asChild>
+              <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white shadow-lg border-2 border-transparent" asChild>
                 <Link href="/services/petroleum">
                   <Fuel className="mr-2 h-5 w-5" />
                   Buy Fuel
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-navy-800" asChild>
+              <Button size="lg" className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/50 hover:bg-white hover:text-navy-800 shadow-lg transition-all" asChild>
                 <Link href="/equipment-hire">
                   <Wrench className="mr-2 h-5 w-5" />
                   Hire Equipment
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-navy-800" asChild>
+              <Button size="lg" className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/50 hover:bg-white hover:text-navy-800 shadow-lg transition-all" asChild>
                 <Link href="/services/infrastructure">
                   <Building className="mr-2 h-5 w-5" />
                   Talk to Projects

@@ -1,91 +1,91 @@
-'use client'
+// components/navigation.tsx
+"use client";
 
-import Link from 'next/link'
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
-import ThemeToggle from './theme-toggle' // optional, if you added it
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import { site } from "@/lib/content";
 
-const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Services', href: '/services' },
-  { name: 'Equipment Hire', href: '/equipment-hire' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'HSE & Sustainability', href: '/hse-sustainability' },
-  { name: 'Careers', href: '/careers' },
-  { name: 'News', href: '/news' },
-  { name: 'Contact', href: '/contact' },
-]
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/projects", label: "Projects" },
+  { href: "/equipment-hire", label: "Equipment Hire" },
+  { href: "/hse-sustainability", label: "HSE & Sustainability" },
+  { href: "/careers", label: "Careers" },
+  { href: "/news", label: "News" },
+  { href: "/contact", label: "Contact" },
+];
 
-export function Navigation() {
-  const [mobileOpen, setMobileOpen] = useState(false)
-
+function NavLinks({ onClick }: { onClick?: () => void }) {
+  const pathname = usePathname();
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <Link href="/" className="text-xl font-bold text-navy-800 dark:text-white">
-          Loop<span className="text-teal-600">Energy</span>
+    <ul className="flex flex-col gap-2 md:flex-row md:items-center md:gap-5">
+      {links.map((l) => {
+        const active = pathname === l.href;
+        return (
+          <li key={l.href}>
+            <Link
+              onClick={onClick}
+              href={l.href}
+              className={`text-sm font-medium ${
+                active ? "text-navy-800 dark:text-white" : "text-gray-700 dark:text-gray-200"
+              } hover:text-navy-900 dark:hover:text-white transition-colors`}
+            >
+              {l.label}
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+export default function Navigation() {
+  return (
+    <header className="sticky top-0 z-40 w-full border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <Link href="/" className="flex items-center gap-2">
+          <div className="text-2xl font-bold">
+            <span className="text-navy-800 dark:text-white">Loop</span>
+            <span className="text-teal-600">Energy</span>
+          </div>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center space-x-6 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-foreground hover:text-teal-600 transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
-
-          {/* Support buttons */}
-          <div className="ml-6 flex items-center gap-3">
-            <Link
-              href="/contact"
-              className="rounded-md bg-teal-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-teal-700"
-            >
-              Get Quote
-            </Link>
-            <ThemeToggle /> {/* remove if you don’t want dark mode */}
-          </div>
+        <nav className="hidden md:block">
+          <NavLinks />
         </nav>
 
-        {/* Mobile menu button */}
-        <button
-          className="inline-flex items-center justify-center rounded-md p-2 text-foreground hover:bg-muted md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="md:hidden border-t bg-background">
-          <nav className="flex flex-col space-y-1 px-4 py-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-muted"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <Link
-              href="/contact"
-              className="rounded-md bg-teal-600 px-3 py-2 text-sm font-medium text-white shadow hover:bg-teal-700"
-              onClick={() => setMobileOpen(false)}
-            >
-              Get Quote
-            </Link>
-          </nav>
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon" aria-label="Open menu">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="bg-background">
+              <SheetHeader>
+                <SheetTitle className="text-foreground">
+                  <span className="text-navy-800 dark:text-white">Loop</span>
+                  <span className="text-teal-600">Energy</span>
+                </SheetTitle>
+              </SheetHeader>
+              <div className="mt-4">
+                <NavLinks />
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
-      )}
+      </div>
     </header>
-  )
+  );
 }

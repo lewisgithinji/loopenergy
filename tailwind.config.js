@@ -7,46 +7,101 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        /* Navy scale */
-        navy: {
-          50: "#f0f4f8",
-          100: "#d9e2ec",
-          200: "#bcccdc",
-          300: "#9fb3c8",
-          400: "#829ab1",
-          500: "#627d98",
-          600: "#486581",
-          700: "#334e68",
-          800: "#243b53",
-          900: "#102a43",
-        },
-
-        /* Teal scale */
-        teal: {
-          50: "#f0fdfa",
-          100: "#ccfbf1",
-          200: "#99f6e4",
-          300: "#5eead4",
-          400: "#2dd4bf",
-          500: "#14b8a6",
-          600: "#0d9488",
-          700: "#0f766e",
-          800: "#115e59",
-          900: "#134e4a",
-        },
-
-        /* Variable-driven tokens (match app/globals.css) */
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        border: "hsl(var(--border))",
-
-        /* Optional extras if you extend later */
-        muted: "hsl(var(--muted, 210 40% 96%))",
-        card: "hsl(var(--card, var(--background)))",
-      },
-    },
+  	extend: {
+  		colors: {
+  			navy: {
+  				'50': '#f0f4f8',
+  				'100': '#d9e2ec',
+  				'200': '#bcccdc',
+  				'300': '#9fb3c8',
+  				'400': '#829ab1',
+  				'500': '#627d98',
+  				'600': '#486581',
+  				'700': '#334e68',
+  				'800': '#243b53',
+  				'900': '#102a43'
+  			},
+  			teal: {
+  				'50': '#f0fdfa',
+  				'100': '#ccfbf1',
+  				'200': '#99f6e4',
+  				'300': '#5eead4',
+  				'400': '#2dd4bf',
+  				'500': '#14b8a6',
+  				'600': '#0d9488',
+  				'700': '#0f766e',
+  				'800': '#115e59',
+  				'900': '#134e4a'
+  			},
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			border: 'hsl(var(--border))',
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
+  	}
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
