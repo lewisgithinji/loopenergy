@@ -1,0 +1,366 @@
+// components/support-chat.tsx
+"use client";
+
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { MessageCircle, Trash2, ExternalLink, Loader2 } from "lucide-react";
+import Link from "next/link";
+import { site } from "@/lib/content";
+
+type QA = { q: string; a: string };
+type KB = {
+  about: string;
+  services: string;
+  products: string;
+  trading: string;
+  partnerships: string;
+  contact: string;
+  pricing: string;
+  locations: string;
+};
+
+const knowledgeBase: KB = {
+  about: "Loop Energy Limited is a dynamic international trading company founded in 2014 and incorporated in 2018, operating from Dubai and Kenya. We specialize in global commodity trading including refined petroleum products, precious metals, and minerals. Our strategic presence across Africa, UAE, and Europe enables comprehensive trading solutions with industry-leading partners.",
+  services: "We provide comprehensive commodity trading services including: Operations Management (sourcing, quality assurance, logistics coordination), Logistics Management (shipping, terminal operations, storage solutions), Financial Structuring & Advisory (trade finance, risk management, payment solutions), Strategic Transaction Advisory (market analysis, partnership development), and Commodity Sourcing & Trading Management (direct supply chains, quality compliance).",
+  products: "Our diverse trading portfolio includes: Refined Petroleum Products (EN590 10 & 50 PPM diesel, Gasoline, Jet A1 Fuel, Diesel D6), Precious Metals (high-purity Gold, Silver Bars with certified authentication), Minerals (Copper Cathodes, Copper Concentrate, Aluminum Ingots, Tanzanite), and Petroleum By-products (Sulphur Granules, Sulphuric Acid, Urea, Bitumen). All products meet international quality standards and specifications.",
+  trading: "We offer flexible trading capabilities including F.O.B Trading (Free on Board with quality assurance, documentation handling, loading supervision) and C.I.F Trading (Cost, Insurance, and Freight with insurance coverage, freight arrangements, port handling). Our strategic operations span key energy markets in Rotterdam (Europe), Jurong (Asia), and Fujairah (Middle East).",
+  partnerships: "Our global partner network includes strategic alliances with international refineries, Tier 1 banks for trade finance, major shipping lines and logistics providers, and terminal operators across key markets. We maintain partnerships with mining consortiums in Africa, regional refineries in the Gulf, and distribution networks in Europe.",
+  contact: `Contact our trading teams: Dubai Office: DMCC Business Centre, Dubai, UAE (+971 4 123 4567, dubai@loopenergyltd.com). Nairobi Office: Kindaruma Courts, Nairobi, Kenya (+254 722 517923, info@loopenergyltd.com). Specialized departments: trading@loopenergyltd.com, logistics@loopenergyltd.com, partnerships@loopenergyltd.com.`,
+  pricing: "Commodity pricing varies by product type, quantity, quality specifications, and market conditions. We offer competitive pricing with flexible payment terms including Letters of Credit, Trade Finance solutions, and multi-currency transactions. Contact our trading desk for current market rates and customized quotations based on your specific requirements.",
+  locations: "Global operations: Dubai (Middle East trading hub for petroleum products and refinery partnerships), Nairobi (African markets specialist for minerals and precious metals), with strategic market access across Europe through Rotterdam operations. Our dual-location setup enables 24/7 trading capabilities across multiple time zones."
+};
+
+// Enhanced keyword mapping for better question matching
+const answerLookup: Record<string, string> = {
+  // Company & About
+  "about": `About Us: ${knowledgeBase.about}`,
+  "company": `About Us: ${knowledgeBase.about}`,
+  "history": `About Us: ${knowledgeBase.about}`,
+  "founded": `About Us: ${knowledgeBase.about}`,
+
+  // Services & Trading
+  "services": `Services: ${knowledgeBase.services}`,
+  "trading": `Trading Services: ${knowledgeBase.trading}`,
+  "capabilities": `Trading Services: ${knowledgeBase.trading}`,
+  "operations": `Services: ${knowledgeBase.services}`,
+
+  // Products & Commodities
+  "products": `Products: ${knowledgeBase.products}`,
+  "commodities": `Products: ${knowledgeBase.products}`,
+  "petroleum": `Products: ${knowledgeBase.products}`,
+  "metals": `Products: ${knowledgeBase.products}`,
+  "minerals": `Products: ${knowledgeBase.products}`,
+  "fuel": `Products: ${knowledgeBase.products}`,
+  "diesel": `Products: ${knowledgeBase.products}`,
+  "gold": `Products: ${knowledgeBase.products}`,
+  "silver": `Products: ${knowledgeBase.products}`,
+  "copper": `Products: ${knowledgeBase.products}`,
+
+  // Partnerships & Network
+  "partners": `Partnerships: ${knowledgeBase.partnerships}`,
+  "partnerships": `Partnerships: ${knowledgeBase.partnerships}`,
+  "network": `Partnerships: ${knowledgeBase.partnerships}`,
+  "suppliers": `Partnerships: ${knowledgeBase.partnerships}`,
+  "refineries": `Partnerships: ${knowledgeBase.partnerships}`,
+
+  // Contact & Locations
+  "contact": `Contact Information: ${knowledgeBase.contact}`,
+  "phone": `Contact Information: ${knowledgeBase.contact}`,
+  "email": `Contact Information: ${knowledgeBase.contact}`,
+  "address": `Contact Information: ${knowledgeBase.contact}`,
+  "office": `Contact Information: ${knowledgeBase.contact}`,
+  "locations": `Locations: ${knowledgeBase.locations}`,
+  "dubai": `Locations: ${knowledgeBase.locations}`,
+  "nairobi": `Locations: ${knowledgeBase.locations}`,
+  "kenya": `Locations: ${knowledgeBase.locations}`,
+  "uae": `Locations: ${knowledgeBase.locations}`,
+
+  // Pricing & Terms
+  "pricing": `Pricing: ${knowledgeBase.pricing}`,
+  "cost": `Pricing: ${knowledgeBase.pricing}`,
+  "price": `Pricing: ${knowledgeBase.pricing}`,
+  "rates": `Pricing: ${knowledgeBase.pricing}`,
+  "payment": `Pricing: ${knowledgeBase.pricing}`,
+  "terms": `Pricing: ${knowledgeBase.pricing}`,
+
+  // Trading specific
+  "fob": `Trading Services: ${knowledgeBase.trading}`,
+  "cif": `Trading Services: ${knowledgeBase.trading}`,
+  "logistics": `Services: ${knowledgeBase.services}`,
+  "shipping": `Services: ${knowledgeBase.services}`,
+  "finance": `Services: ${knowledgeBase.services}`,
+};
+
+// Generate contextual suggestions based on content
+function generateSuggestions(): string[] {
+  const suggestions: string[] = [];
+  const pushIf = (label: string, content: string) => {
+    if (content?.trim()) suggestions.push(label);
+  };
+
+  pushIf("Our Products", knowledgeBase.products);
+  pushIf("Trading Services", knowledgeBase.trading);
+  pushIf("Global Partnerships", knowledgeBase.partnerships);
+  pushIf("Contact & Locations", knowledgeBase.contact);
+  pushIf("Pricing Information", knowledgeBase.pricing);
+
+  return suggestions.slice(0, 5); // Limit to 5 suggestions
+}
+
+function findBestAnswer(question: string): string {
+  const q = question.toLowerCase().trim();
+
+  // Direct keyword match
+  for (const [keyword, answer] of Object.entries(answerLookup)) {
+    if (q.includes(keyword)) {
+      return answer;
+    }
+  }
+
+  // Fallback for unmapped questions
+  if (q.includes("help") || q.includes("support")) {
+    return "I can help you with information about our commodity trading services, products, partnerships, contact details, pricing, and global operations. You can also use the WhatsApp link above or visit our contact page for direct assistance.";
+  }
+
+  return "I couldn't find that specific information. Try asking about our products, trading services, partnerships, pricing, contact details, or global locations. You can also use the WhatsApp link above or visit our contact page for direct assistance.";
+}
+
+// Sample questions for user guidance
+const sampleQuestions: QA[] = [
+  { q: "What products do you trade?", a: "Products" },
+  { q: "Trading services offered?", a: "Trading" },
+  { q: "Contact information?", a: "Contact" },
+  { q: "Office locations?", a: "Locations" },
+  { q: "Partnership opportunities?", a: "Partners" },
+  { q: "Pricing information?", a: "Pricing" },
+];
+
+export default function SupportChat() {
+  const [messages, setMessages] = useState<Array<{id: number, text: string, isUser: boolean, timestamp: Date}>>([]);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const suggestions = useMemo(generateSuggestions, []);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const handleSubmit = async (questionText?: string) => {
+    const question = questionText || input.trim();
+    if (!question) return;
+
+    const userMessage = {
+      id: Date.now(),
+      text: question,
+      isUser: true,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInput("");
+    setIsLoading(true);
+
+    // Simulate brief processing delay for better UX
+    setTimeout(() => {
+      const answer = findBestAnswer(question);
+      const botMessage = {
+        id: Date.now() + 1,
+        text: answer,
+        isUser: false,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, botMessage]);
+      setIsLoading(false);
+    }, 500);
+  };
+
+  const clearChat = () => {
+    setMessages([]);
+  };
+
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button
+          size="icon"
+          className="fixed bottom-4 right-4 z-50 rounded-full h-14 w-14 bg-loop-orange-600 hover:bg-loop-orange-700 shadow-lg hover:shadow-xl transition-all duration-300"
+          aria-label="Open support chat"
+        >
+          <MessageCircle className="h-6 w-6 text-white" />
+        </Button>
+      </SheetTrigger>
+
+      <SheetContent side="right" className="w-full sm:w-96 p-0 flex flex-col">
+        <SheetHeader className="p-4 border-b bg-gradient-to-r from-loop-orange-600 to-loop-orange-700 text-white">
+          <SheetTitle className="text-left text-white">
+            Loop Energy Support
+          </SheetTitle>
+          <p className="text-loop-orange-100 text-sm text-left">
+            Ask about our trading services, products, partnerships, or contact information
+          </p>
+        </SheetHeader>
+
+        <div className="flex-1 flex flex-col min-h-0">
+          {/* Welcome & WhatsApp */}
+          <div className="p-4 bg-gradient-to-br from-loop-orange-50 to-navy-50 border-b">
+            <p className="text-sm text-gray-700 mb-3">
+              Get instant answers about our commodity trading services or contact our team directly:
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <a
+                href={site.contacts.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-3 py-2 bg-green-600 text-white text-xs font-medium rounded-lg hover:bg-green-700 transition-colors"
+              >
+                <ExternalLink className="h-3 w-3 mr-1" />
+                WhatsApp
+              </a>
+              <div className="flex flex-wrap gap-1">
+                <Link href="/trading" className="inline-flex items-center px-2 py-1 bg-white/80 border border-gray-200 text-gray-700 text-xs rounded hover:bg-gray-50 transition-colors">
+                  🌐 Trading
+                </Link>
+                <Link href="/products" className="inline-flex items-center px-2 py-1 bg-white/80 border border-gray-200 text-gray-700 text-xs rounded hover:bg-gray-50 transition-colors">
+                  ⚡ Products
+                </Link>
+                <Link href="/partners" className="inline-flex items-center px-2 py-1 bg-white/80 border border-gray-200 text-gray-700 text-xs rounded hover:bg-gray-50 transition-colors">
+                  🤝 Partners
+                </Link>
+                <Link href="/contact" className="inline-flex items-center px-2 py-1 bg-white/80 border border-gray-200 text-gray-700 text-xs rounded hover:bg-gray-50 transition-colors">
+                  📞 Contact
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {messages.length === 0 && (
+              <div className="space-y-3">
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm text-navy-800">Popular Questions</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    {sampleQuestions.map((qa, i) => (
+                      <Button
+                        key={i}
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleSubmit(qa.q)}
+                        className="w-full justify-start text-left h-auto p-2 text-xs text-gray-600 hover:text-navy-800 hover:bg-loop-orange-50"
+                      >
+                        {qa.q}
+                      </Button>
+                    ))}
+                  </CardContent>
+                </Card>
+
+                {suggestions.length > 0 && (
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm text-navy-800">Explore Our Services</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      {suggestions.map((suggestion, i) => (
+                        <Button
+                          key={i}
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleSubmit(`Tell me about ${suggestion.toLowerCase()}`)}
+                          className="w-full justify-start text-left h-auto p-2 text-xs text-gray-600 hover:text-navy-800 hover:bg-navy-50"
+                        >
+                          {suggestion}
+                        </Button>
+                      ))}
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
+            )}
+
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+              >
+                <div
+                  className={`max-w-[85%] p-3 rounded-lg text-sm ${
+                    message.isUser
+                      ? 'bg-loop-orange-600 text-white'
+                      : 'bg-gray-100 text-gray-800'
+                  }`}
+                >
+                  <div className="whitespace-pre-wrap">{message.text}</div>
+                  <div
+                    className={`text-xs mt-1 opacity-70 ${
+                      message.isUser ? 'text-loop-orange-100' : 'text-gray-500'
+                    }`}
+                  >
+                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="bg-gray-100 p-3 rounded-lg">
+                  <Loader2 className="h-4 w-4 animate-spin text-gray-600" />
+                </div>
+              </div>
+            )}
+
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input */}
+          <div className="p-4 border-t bg-white">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
+              className="flex gap-2"
+            >
+              <Input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Ask about products, trading, partnerships, pricing..."
+                className="flex-1 text-sm focus:ring-loop-orange-500"
+                disabled={isLoading}
+              />
+              <Button
+                type="submit"
+                size="sm"
+                disabled={!input.trim() || isLoading}
+                className="bg-loop-orange-600 hover:bg-loop-orange-700"
+              >
+                Send
+              </Button>
+              {messages.length > 0 && (
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={clearChat}
+                  className="border-gray-300"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              )}
+            </form>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}

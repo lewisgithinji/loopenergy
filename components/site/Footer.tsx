@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import { 
-  Linkedin, 
-  Twitter, 
-  Youtube, 
-  Phone, 
+import Image from 'next/image'
+import {
+  Linkedin,
+  Twitter,
+  Youtube,
+  Phone,
   Mail,
   MapPin,
   ExternalLink,
@@ -32,18 +33,18 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
   }
 
   const quickLinks = [
-    { name: 'About', href: '/about' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Trading', href: '/trading' },
+    { name: 'Products', href: '/products' },
     { name: 'Services', href: '/services' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Equipment Hire', href: '/equipment-hire' },
-    { name: 'HSE & Sustainability', href: '/hse-sustainability' },
+    { name: 'Partners', href: '/partners' },
     { name: 'Contact', href: '/contact' }
   ]
 
   const resources = [
-    { name: 'Documentation', href: '/docs', icon: <FileText className="h-4 w-4" /> },
-    { name: 'News & Updates', href: '/news', icon: <BookOpen className="h-4 w-4" /> },
-    { name: 'HSE Policy', href: '/hse-sustainability', icon: <HelpCircle className="h-4 w-4" /> }
+    { name: 'Product Catalog', href: '/products', icon: <FileText className="h-4 w-4" /> },
+    { name: 'Trading Services', href: '/trading', icon: <BookOpen className="h-4 w-4" /> },
+    { name: 'Partner Network', href: '/partners', icon: <HelpCircle className="h-4 w-4" /> }
   ]
 
   const socialLinks = [
@@ -84,13 +85,18 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
             {/* Column 1: Logo & Tagline */}
             <div className="lg:col-span-1">
               <div className="mb-6">
-                <Link 
-                  href="/" 
-                  className="inline-flex items-center text-2xl font-bold hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-neutral-950 rounded-sm"
+                <Link
+                  href="/"
+                  className="inline-flex items-center hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-neutral-950 rounded-sm"
                   aria-label="Loop Energy Home"
                 >
-                  <span className="text-white">Loop</span>
-                  <span className="text-teal-400">Energy</span>
+                  <Image
+                    src="/logo-clear.png"
+                    alt="Loop Energy"
+                    width={160}
+                    height={36}
+                    className="h-9 w-auto"
+                  />
                 </Link>
               </div>
               <p className="text-gray-200 text-sm leading-relaxed max-w-xs">
@@ -100,14 +106,14 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
               {/* Contact Info */}
               <div className="mt-8 space-y-3">
                 <div className="flex items-center text-gray-200">
-                  <MapPin className="h-4 w-4 mr-3 text-teal-400 flex-shrink-0" />
+                  <MapPin className="h-4 w-4 mr-3 text-loop-orange-400 flex-shrink-0" />
                   <span className="text-sm">{site.contacts.address}</span>
                 </div>
                 <div className="flex items-center text-gray-200">
-                  <Phone className="h-4 w-4 mr-3 text-teal-400 flex-shrink-0" />
-                  <a 
+                  <Phone className="h-4 w-4 mr-3 text-loop-orange-400 flex-shrink-0" />
+                  <a
                     href={`tel:${site.contacts.phone}`}
-                    className="text-sm hover:text-white hover:underline hover:glow transition-all focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
+                    className="text-sm hover:text-white hover:underline hover:glow transition-all focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
                   >
                     {site.contacts.phone}
                   </a>
@@ -229,10 +235,10 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
                     Contact
                   </Link>
                   <Link
-                    href="/equipment-hire"
+                    href="/products"
                     className="flex-1 inline-flex items-center justify-center px-3 py-2 bg-white/10 border border-white/20 text-gray-200 text-xs font-medium rounded-lg hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-black"
                   >
-                    Equipment
+                    Products
                   </Link>
                 </div>
               </div>
@@ -255,7 +261,7 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
                     href="https://www.datacare.co.ke" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-teal-400 hover:text-teal-300 transition-colors"
+                    className="text-loop-orange-400 hover:text-loop-orange-300 transition-colors"
                   >
                     DataCare
                   </a>
@@ -264,22 +270,22 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
               
               <div className="flex items-center space-x-6 text-sm">
                 <Link
-                  href="/terms"
-                  className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
+                  href="/trading"
+                  className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
                 >
-                  Terms
+                  Trading
                 </Link>
                 <Link
-                  href="/privacy"
-                  className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
+                  href="/products"
+                  className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
                 >
-                  Privacy
+                  Products
                 </Link>
                 <Link
-                  href="/news"
-                  className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
+                  href="/partners"
+                  className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
                 >
-                  News
+                  Partners
                 </Link>
               </div>
             </div>
