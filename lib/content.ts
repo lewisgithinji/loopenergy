@@ -5,7 +5,7 @@
 export const site = {
   name: "Loop Energy Limited",
   url: "https://loopenergy.netlify.app",
-  logo: "/logo.png",
+  logo: "/logo-clear.png",
   brand: {
     primary: "#0b2545",
     accent: "#1ea7a1",

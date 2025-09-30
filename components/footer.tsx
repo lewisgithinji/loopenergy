@@ -9,27 +9,27 @@ export default function Footer() {
         <div>
           <h3 className="text-sm font-semibold text-foreground">Company</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li><Link href="/about" className="hover:text-foreground">About</Link></li>
+            <li><Link href="/about" className="hover:text-foreground">About Us</Link></li>
             <li><Link href="/services" className="hover:text-foreground">Services</Link></li>
-            <li><Link href="/projects" className="hover:text-foreground">Projects</Link></li>
-            <li><Link href="/hse-sustainability" className="hover:text-foreground">HSE & Sustainability</Link></li>
+            <li><Link href="/trading" className="hover:text-foreground">Trading</Link></li>
+            <li><Link href="/partners" className="hover:text-foreground">Partners</Link></li>
           </ul>
         </div>
 
         <div>
           <h3 className="text-sm font-semibold text-foreground">Resources</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li><Link href="/equipment-hire" className="hover:text-foreground">Equipment Hire</Link></li>
-            <li><Link href="/news" className="hover:text-foreground">News</Link></li>
-            <li><Link href="/faq" className="hover:text-foreground">FAQ</Link></li>
+            <li><Link href="/products" className="hover:text-foreground">Products</Link></li>
+            <li><Link href="/trading" className="hover:text-foreground">Trading Services</Link></li>
+            <li><Link href="/contact" className="hover:text-foreground">Contact</Link></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold text-foreground">Careers</h3>
+          <h3 className="text-sm font-semibold text-foreground">Get in Touch</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li><Link href="/careers" className="hover:text-foreground">Open roles</Link></li>
-            <li><Link href="/contact" className="hover:text-foreground">Apply / Contact</Link></li>
+            <li><Link href="/contact" className="hover:text-foreground">Contact Us</Link></li>
+            <li><Link href="/partners" className="hover:text-foreground">Partnership Inquiry</Link></li>
           </ul>
         </div>
 
