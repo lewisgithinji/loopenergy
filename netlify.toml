@@ -17,6 +17,15 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+    # Content Security Policy - Protects against XSS attacks
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data:; connect-src 'self' https://api.anthropic.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+
+    # HTTP Strict Transport Security - Enforces HTTPS
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+    # Permissions Policy - Restricts browser features
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+
 [[headers]]
   for = "/images/*"
   [headers.values]

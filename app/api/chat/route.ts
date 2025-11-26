@@ -1,12 +1,70 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { chatMessageSchema } from '@/lib/validation'
+import { safeError, logSecurityEvent } from '@/lib/error-handler'
+
+// CSRF Protection - Allowed origins
+const ALLOWED_ORIGINS = [
+  'https://loopenergy.netlify.app',
+  'https://loopenergy.co.ke',
+  'http://localhost:3000', // Development only
+];
+
+function validateOrigin(request: NextRequest): boolean {
+  const origin = request.headers.get('origin');
+  const referer = request.headers.get('referer');
+
+  const source = origin || referer;
+  if (!source) return false;
+
+  try {
+    const sourceUrl = new URL(source);
+    return ALLOWED_ORIGINS.some(allowed => {
+      const allowedUrl = new URL(allowed);
+      return sourceUrl.hostname === allowedUrl.hostname;
+    });
+  } catch {
+    return false;
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const { message, history } = await request.json()
-    
+    // CSRF Protection
+    if (!validateOrigin(request)) {
+      logSecurityEvent('csrf_violation', {
+        endpoint: '/api/chat',
+        origin: request.headers.get('origin'),
+        referer: request.headers.get('referer'),
+      });
+      return NextResponse.json({ error: 'Invalid origin' }, { status: 403 });
+    }
+
+    // Parse and validate request body
+    const body = await request.json();
+    const validationResult = chatMessageSchema.safeParse(body);
+
+    if (!validationResult.success) {
+      logSecurityEvent('validation_failure', {
+        endpoint: '/api/chat',
+        errors: validationResult.error.errors,
+      });
+      return NextResponse.json(
+        {
+          error: 'Validation failed',
+          details: validationResult.error.errors.map(err => ({
+            field: err.path.join('.'),
+            message: err.message,
+          })),
+        },
+        { status: 400 }
+      );
+    }
+
+    const { message, history } = validationResult.data;
+
     // Check if Anthropic API key is available
     const apiKey = process.env.ANTHROPIC_API_KEY
-    
+
     if (!apiKey) {
       // Fallback to scripted responses
       return NextResponse.json({
@@ -44,16 +102,20 @@ export async function POST(request: NextRequest) {
     `
 
     // Build conversation history for context
+    // Sanitize and truncate message and history
+    const sanitizedMessage = message.substring(0, 500);
+    const sanitizedHistory = history.slice(-5).map((msg) => ({
+      role: msg.isUser ? "user" : "assistant",
+      content: msg.text.substring(0, 500),
+    }));
+
     const messages = [
       { role: "system", content: companyContext },
-      ...history.map((msg: any) => ({
-        role: msg.isUser ? "user" : "assistant",
-        content: msg.text
-      })),
-      { role: "user", content: message }
-    ]
+      ...sanitizedHistory,
+      { role: "user", content: sanitizedMessage }
+    ];
 
-    // Call Anthropic API
+    // Call Anthropic API with timeout
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -64,25 +126,31 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         model: "claude-3-sonnet-20240229",
         max_tokens: 300,
-        messages: messages.slice(-10) // Keep last 10 messages for context
-      })
-    })
+        messages: messages
+      }),
+      signal: AbortSignal.timeout(30000) // 30 second timeout
+    });
 
     if (!response.ok) {
-      throw new Error('API request failed')
+      console.error('Anthropic API error:', response.status);
+      throw new Error('AI_SERVICE_ERROR');
     }
 
-    const data = await response.json()
-    const aiResponse = data.content[0].text
+    const data = await response.json();
+    const aiResponse = data.content[0].text;
 
-    return NextResponse.json({ message: aiResponse })
+    return NextResponse.json({ message: aiResponse });
 
   } catch (error) {
-    console.error('Chat API error:', error)
-    
-    // Fallback response
-    return NextResponse.json({
-      message: "I apologize, but I'm having trouble responding right now. Please call us at +254 722 517923 or email loopenergy01@gmail.com for immediate assistance."
-    })
+    // Use safe error handler
+    const errorResponse = safeError(
+      error,
+      "I apologize, but I'm having trouble responding right now. Please call us at +254 722 517923 or email loopenergy01@gmail.com for immediate assistance."
+    );
+
+    return NextResponse.json(
+      { message: errorResponse.error },
+      { status: 500 }
+    );
   }
 }

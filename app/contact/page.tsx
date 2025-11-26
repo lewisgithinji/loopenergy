@@ -1,34 +1,54 @@
 'use client'
 
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { MapPin, Phone, Mail, Clock, Globe, Building2, ArrowRight } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, Globe, Building2, ArrowRight, Loader2, CheckCircle, AlertCircle } from 'lucide-react'
+import { contactFormSchema, type ContactFormData } from '@/lib/validation'
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    company: '',
-    service: '',
-    message: ''
+  const [submissionState, setSubmissionState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    mode: 'onBlur',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
-    alert('Thank you for your message! We will get back to you soon.')
-  }
+  const onSubmit = async (data: ContactFormData) => {
+    setSubmissionState('submitting')
+    setErrorMessage('')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+    try {
+      const response = await fetch('/.netlify/functions/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message')
+      }
+
+      setSubmissionState('success')
+      reset()
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmissionState('idle'), 5000)
+    } catch (error) {
+      setSubmissionState('error')
+      setErrorMessage(error instanceof Error ? error.message : 'An error occurred')
+    }
   }
 
   return (
@@ -261,124 +281,184 @@ export default function ContactPage() {
                   <p className="text-gray-600">Get in touch with our commodity trading experts</p>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    {/* Success Message */}
+                    {submissionState === 'success' && (
+                      <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5" />
+                        <span>Thank you! We will get back to you soon.</span>
+                      </div>
+                    )}
+
+                    {/* Error Message */}
+                    {submissionState === 'error' && (
+                      <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg flex items-center gap-2">
+                        <AlertCircle className="h-5 w-5" />
+                        <span>{errorMessage || 'Failed to send message. Please try again.'}</span>
+                      </div>
+                    )}
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+                          First Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="firstName"
+                          {...register('firstName')}
+                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                            errors.firstName
+                              ? 'border-red-500 focus:ring-red-500'
+                              : 'border-gray-300 focus:ring-loop-orange-500'
+                          }`}
+                        />
+                        {errors.firstName && (
+                          <p className="mt-1 text-sm text-red-600">{errors.firstName.message}</p>
+                        )}
+                      </div>
+                      <div>
+                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+                          Last Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="lastName"
+                          {...register('lastName')}
+                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                            errors.lastName
+                              ? 'border-red-500 focus:ring-red-500'
+                              : 'border-gray-300 focus:ring-loop-orange-500'
+                          }`}
+                        />
+                        {errors.lastName && (
+                          <p className="mt-1 text-sm text-red-600">{errors.lastName.message}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          {...register('email')}
+                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                            errors.email
+                              ? 'border-red-500 focus:ring-red-500'
+                              : 'border-gray-300 focus:ring-loop-orange-500'
+                          }`}
+                        />
+                        {errors.email && (
+                          <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                        )}
+                      </div>
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                          Phone
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          {...register('phone')}
+                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                            errors.phone
+                              ? 'border-red-500 focus:ring-red-500'
+                              : 'border-gray-300 focus:ring-loop-orange-500'
+                          }`}
+                        />
+                        {errors.phone && (
+                          <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
+                        )}
+                      </div>
+                    </div>
+
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
-                        First Name *
+                      <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
+                        Company
                       </label>
                       <input
                         type="text"
-                        id="firstName"
-                        name="firstName"
-                        required
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-loop-orange-500"
+                        id="company"
+                        {...register('company')}
+                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                          errors.company
+                            ? 'border-red-500 focus:ring-red-500'
+                            : 'border-gray-300 focus:ring-loop-orange-500'
+                        }`}
                       />
+                      {errors.company && (
+                        <p className="mt-1 text-sm text-red-600">{errors.company.message}</p>
+                      )}
                     </div>
-                    <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
-                        Last Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        required
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-loop-orange-500"
-                      />
-                    </div>
-                  </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                        Email *
+                      <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">
+                        Service Interest
                       </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-loop-orange-500"
-                      />
+                      <select
+                        id="service"
+                        {...register('service')}
+                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                          errors.service
+                            ? 'border-red-500 focus:ring-red-500'
+                            : 'border-gray-300 focus:ring-loop-orange-500'
+                        }`}
+                      >
+                        <option value="">Select a service</option>
+                        <option value="petroleum">Petroleum Products Trading</option>
+                        <option value="precious-metals">Precious Metals Trading</option>
+                        <option value="minerals">Minerals & Commodities</option>
+                        <option value="logistics">Logistics & Shipping</option>
+                        <option value="partnerships">Strategic Partnerships</option>
+                        <option value="financial">Financial Structuring</option>
+                        <option value="other">Other Services</option>
+                      </select>
+                      {errors.service && (
+                        <p className="mt-1 text-sm text-red-600">{errors.service.message}</p>
+                      )}
                     </div>
+
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                        Phone
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                        Message *
                       </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-loop-orange-500"
-                      />
+                      <textarea
+                        id="message"
+                        rows={4}
+                        {...register('message')}
+                        placeholder="Please provide details about your requirements..."
+                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                          errors.message
+                            ? 'border-red-500 focus:ring-red-500'
+                            : 'border-gray-300 focus:ring-loop-orange-500'
+                        }`}
+                      ></textarea>
+                      {errors.message && (
+                        <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
+                      )}
                     </div>
-                  </div>
 
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-                      Company
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">
-                      Service Interest
-                    </label>
-                    <select
-                      id="service"
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-loop-orange-500"
+                    <Button
+                      type="submit"
+                      className="w-full bg-loop-orange-600 hover:bg-loop-orange-700"
+                      disabled={isSubmitting || submissionState === 'submitting'}
                     >
-                      <option value="">Select a service</option>
-                      <option value="petroleum">Petroleum Products Trading</option>
-                      <option value="precious-metals">Precious Metals Trading</option>
-                      <option value="minerals">Minerals & Commodities</option>
-                      <option value="logistics">Logistics & Shipping</option>
-                      <option value="partnerships">Strategic Partnerships</option>
-                      <option value="financial">Financial Structuring</option>
-                      <option value="other">Other Services</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={4}
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Please provide details about your requirements..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    ></textarea>
-                  </div>
-
-                  <Button type="submit" className="w-full bg-loop-orange-600 hover:bg-loop-orange-700">
-                    <Mail className="mr-2 h-4 w-4" />
-                    Send Message
-                  </Button>
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="mr-2 h-4 w-4" />
+                          Send Message
+                        </>
+                      )}
+                    </Button>
                 </form>
               </CardContent>
             </Card>

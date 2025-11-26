@@ -29,37 +29,37 @@ const productCategories = [
     image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     products: [
       {
-        name: 'Gasoline (RON 92 & 95)',
-        specifications: ['RON 92 - 95', 'Consistent quality', 'Regional specifications', 'Competitive pricing'],
-        description: 'The driving force that powers development and commerce throughout the world.',
+        name: 'Gasoline (RON 92 to RON 95)',
+        specifications: ['RON 92 to RON 95', 'Consistent quality', 'Regional specifications', 'Competitive pricing', 'Steady supply'],
+        description: 'Gasoline is the driving force that powers development and commerce throughout the world. Loop Energy supplies gasoline from RON 92 to RON 95 with competitive prices, steady supply, and expert delivery. We work with a range of refiners, oil companies, and distributors across Africa, Europe, and UAE.',
         applications: ['Automotive fuel', 'Transportation', 'Commercial vehicles'],
         availability: 'In Stock'
       },
       {
-        name: 'Gas Oil (10 - 2500 PPM)',
-        specifications: ['10 PPM - 2500 PPM', 'Marine grade available', 'Consistent supply', 'Quality assured'],
-        description: 'Essential for powering trucks, trains, and boats that transport goods globally.',
-        applications: ['Marine vessels', 'Transportation', 'Industrial equipment'],
+        name: 'Gas Oil (2500PPM to 10PPM)',
+        specifications: ['2500PPM to 10PPM', 'Marine grade available', 'Consistent quality', 'Competitive pricing'],
+        description: 'Loop Energy is a known trader, supplier, and distributor of gas oil throughout our network of African, European, and UAE partners. We carry gas oil from 2500PPM to 10PPM. Gas oil has numerous applications, including powering the trucks, trains, and boats that transport nearly all the products people consume around the globe. As an active trader in global gas oil markets, we source products of consistent quality at competitive prices, provide shipping solutions, and make punctual deliveries.',
+        applications: ['Marine vessels', 'Transportation', 'Industrial equipment', 'Trucks', 'Trains'],
         availability: 'In Stock'
       },
       {
         name: 'Fuel Oil (RMG 180/380, RME 180)',
-        specifications: ['RMG 180 & 380', 'RME 180', 'Bunker fuel grade', 'Various qualities available'],
-        description: 'Primary propellant for marine vessels and industrial heating applications.',
-        applications: ['Marine bunker fuel', 'Industrial heating', 'Power generation'],
+        specifications: ['RMG 180', 'RMG 380', 'RME 180', 'Various qualities available', 'Bunker fuel solutions'],
+        description: 'Fuel oil is the primary propellant in the marine vessels that pump goods into all the world\'s markets. Aside from providing bunker fuel and solutions to ships, we trade in large quantities of fuel oil. We carry RMG 180, RME 180, RMG 380, and various qualities of fuel oil to fill our client\'s needs. Distilled from crude oil, but often left as residue during the oil refining process, nearly 10% of fuel oil produced is used to power large ships, a further 15% is used for heating, and the remainder is used by refineries as a feedstock for production of other fuels.',
+        applications: ['Marine bunker fuel', 'Industrial heating', 'Power generation', 'Refinery feedstock'],
         availability: 'In Stock'
       },
       {
         name: 'Jet A-1 Fuel',
-        specifications: ['Aviation grade', 'MENA region sourced', 'Quality certified', 'Timely delivery'],
-        description: 'Middle distillate jet fuel sourced directly from MENA region refineries.',
+        specifications: ['Aviation grade', 'MENA region sourced', 'Quality certified', 'Timely delivery', 'Middle distillate'],
+        description: 'Jet fuel is a middle distillate, or a byproduct of refined crude oil, situated between the lighter and heavier crude oil factions. As its name suggests, it is used primarily to power jet engines. With more people flying than ever before, jet fuel demand growth is expected to rise in the coming decade. At Loop Energy we offer our expert knowledge and flexibility to respond promptly to supply and demand imbalances. We primarily deal in Jet A-1 fuel that we source directly from refineries throughout the MENA region. Our quality product is delivered on time.',
         applications: ['Commercial aviation', 'Private aviation', 'Aircraft operations'],
         availability: 'Available'
       },
       {
         name: 'Bitumen (30/40 - 80/100)',
-        specifications: ['Grade 30/40, 50/70, 60/70, 80/100', 'Bulk & packaged', 'Flexi bags', 'Bitutainers'],
-        description: 'Various grades and packaging options for construction and infrastructure.',
+        specifications: ['Grade 30/40', 'Grade 50/70', 'Grade 60/70', 'Grade 80/100', 'Bulk, Flexi bags, Bitutainers'],
+        description: 'We trade different grades and different packaging of bitumen. Our product range includes 30/40, 50/70, 60/70, 80/100 amongst others. We deal in bulk, flexi bags, bitutainers etc.',
         applications: ['Road construction', 'Waterproofing', 'Industrial applications'],
         availability: 'In Stock'
       }
@@ -69,21 +69,21 @@ const productCategories = [
     id: 'precious-metals',
     title: 'Precious Metals',
     icon: Award,
-    description: 'High-purity gold and silver bars with certified quality and authentication',
+    description: 'High-purity Gold and Silver Bars with certified quality and authentication',
     image: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     products: [
       {
         name: 'High-Purity Gold Bars',
-        specifications: ['99.9% purity', 'Certified quality', 'International standards', 'Secure delivery'],
-        description: 'Premium gold bars meeting international purity and certification standards.',
-        applications: ['Investment', 'Industrial use', 'Jewelry manufacturing'],
+        specifications: ['99.9% purity', 'Certified quality', 'International standards', 'Secure delivery', 'Verified authentication'],
+        description: 'Premium high-purity gold bars meeting international purity and certification standards. Sourced through reliable channels with complete documentation and secure delivery.',
+        applications: ['Investment', 'Industrial use', 'Jewelry manufacturing', 'Reserve holdings'],
         availability: 'Available on Order'
       },
       {
-        name: 'Silver Bars',
-        specifications: ['99.9% purity', 'Various sizes', 'Certified authentication', 'Secure storage'],
-        description: 'High-quality silver bars with certified purity and authentication.',
-        applications: ['Investment', 'Industrial applications', 'Electronics'],
+        name: 'High-Purity Silver Bars',
+        specifications: ['99.9% purity', 'Various sizes', 'Certified authentication', 'Secure delivery', 'International standards'],
+        description: 'High-quality silver bars with certified purity and authentication. Available in various sizes to meet diverse client requirements.',
+        applications: ['Investment', 'Industrial applications', 'Electronics', 'Manufacturing'],
         availability: 'Available on Order'
       }
     ]
@@ -92,7 +92,7 @@ const productCategories = [
     id: 'minerals',
     title: 'Minerals',
     icon: Mountain,
-    description: 'Diverse mineral portfolio sourced through strategic African partnerships',
+    description: 'A varied portfolio sourced through strategic partnerships in Africa including Copper Cathodes, Copper Concentrate, Copper Cobalt, Aluminum Ingots and Tanzanite',
     image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     products: [
       {
@@ -136,7 +136,7 @@ const productCategories = [
     id: 'by-products',
     title: 'Petroleum By-products',
     icon: Zap,
-    description: 'Essential by-products supporting various industrial applications',
+    description: 'A range of products including those essential for various industries including Sulphur Granules, Sulphuric Acid, and Urea',
     image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     products: [
       {
