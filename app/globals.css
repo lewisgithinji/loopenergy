@@ -151,16 +151,16 @@ html {
 
 @keyframes floatDiagonal {
   0%, 100% { 
-    transform: translate(0, 0); 
+    transform: translate(0, 0) scale(1); 
   }
   25% { 
-    transform: translate(15px, -10px); 
+    transform: translate(30px, -20px) scale(1.1); 
   }
   50% { 
-    transform: translate(10px, -20px); 
+    transform: translate(20px, -40px) scale(1); 
   }
   75% { 
-    transform: translate(-5px, -15px); 
+    transform: translate(-10px, -30px) scale(0.9); 
   }
 }
 
@@ -184,26 +184,26 @@ html {
   
   /* Custom animation utilities */
   .animate-floatY {
-    animation: floatY 8s ease-in-out infinite;
+    animation: floatY 4s ease-in-out infinite;
   }
   
   .animate-floatX {
-    animation: floatX 12s ease-in-out infinite;
+    animation: floatX 6s ease-in-out infinite;
   }
   
   .animate-spinSlow {
-    animation: spinSlow 40s linear infinite;
+    animation: spinSlow 15s linear infinite;
   }
   
   .animate-floatYReverse {
-    animation: floatYReverse 10s ease-in-out infinite;
+    animation: floatYReverse 5s ease-in-out infinite;
   }
   
   .animate-floatXReverse {
-    animation: floatXReverse 14s ease-in-out infinite;
+    animation: floatXReverse 7s ease-in-out infinite;
   }
   
   .animate-floatDiagonal {
-    animation: floatDiagonal 16s ease-in-out infinite;
+    animation: floatDiagonal 10s ease-in-out infinite;
   }
 }

@@ -26,9 +26,9 @@ interface FooterProps {
 export default function Footer({ overlay = 'gradient' }: FooterProps) {
 
   const overlayClasses = {
-    gradient: 'bg-gradient-to-t from-black/70 via-zinc-900/70 to-black/70',
-    mesh: 'bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black/70 via-zinc-900/70 to-black/70',
-    none: 'bg-black/50'
+    gradient: 'bg-gradient-to-t from-black/60 via-zinc-900/40 to-black/60',
+    mesh: 'bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-navy-900/60 via-black/80 to-black',
+    none: 'bg-black/30'
   }
 
   const quickLinks = [
@@ -37,7 +37,7 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
     { name: 'Products', href: '/products' },
     { name: 'Services', href: '/services' },
     { name: 'Partners', href: '/partners' },
-    { name: 'Contact', href: '/contact' }
+    { name: 'Contact Us', href: '/contact' }
   ]
 
   const resources = [

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { 
+import {
   Hexagon,
   Triangle,
   Zap,
@@ -25,7 +25,7 @@ export default function FloatingObjectsBackground() {
 
   useEffect(() => {
     setIsMounted(true)
-    
+
     // Generate floating objects with randomized properties
     const generateFloatingObjects = (): FloatingObject[] => {
       const objects: FloatingObject[] = []
@@ -38,9 +38,9 @@ export default function FloatingObjectsBackground() {
         'animate-floatDiagonal',
         'animate-spinSlow'
       ]
-      
-      // Generate 12-15 objects with random properties
-      for (let i = 0; i < 14; i++) {
+
+      // Generate 18-22 objects for better density
+      for (let i = 0; i < 20; i++) {
         objects.push({
           id: i,
           type: objectTypes[Math.floor(Math.random() * objectTypes.length)],
@@ -51,10 +51,10 @@ export default function FloatingObjectsBackground() {
           },
           animation: animations[Math.floor(Math.random() * animations.length)],
           delay: Math.random() * 8, // 0-8 second delay
-          opacity: Math.random() * 0.2 + 0.15 // 0.15 to 0.35 opacity
+          opacity: Math.random() * 0.3 + 0.3 // Increased opacity: 0.3 to 0.6
         })
       }
-      
+
       return objects
     }
 
@@ -65,7 +65,7 @@ export default function FloatingObjectsBackground() {
   const renderFloatingObject = (obj: FloatingObject) => {
     const sizeClasses = {
       small: 'w-8 h-8',
-      medium: 'w-12 h-12', 
+      medium: 'w-12 h-12',
       large: 'w-16 h-16'
     }
 
@@ -82,7 +82,7 @@ export default function FloatingObjectsBackground() {
         return (
           <div
             key={obj.id}
-            className={`${baseClasses} bg-teal-500/20 rounded-full border border-teal-400/10`}
+            className={`${baseClasses} bg-loop-orange-500/30 rounded-full border border-loop-orange-400/20`}
             style={style}
             aria-hidden="true"
           />
@@ -91,7 +91,7 @@ export default function FloatingObjectsBackground() {
         return (
           <Hexagon
             key={obj.id}
-            className={`${baseClasses} text-blue-400/20`}
+            className={`${baseClasses} text-loop-orange-400/40`}
             style={style}
             aria-hidden="true"
           />
