@@ -42,7 +42,14 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-navy-800 to-slate-700 text-white">
+      <section
+        className="relative py-24 overflow-hidden bg-navy-900 text-white"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(11, 37, 69, 0.7), rgba(11, 37, 69, 0.7)), url("/about-hero.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <h1 id="about-heading" className="text-4xl md:text-5xl font-bold mb-6">

@@ -54,7 +54,14 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-navy-800 to-slate-700 text-white">
+      <section
+        className="relative py-24 overflow-hidden bg-navy-900 text-white"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(11, 37, 69, 0.7), rgba(11, 37, 69, 0.7)), url("/contact-hero.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
@@ -307,11 +314,10 @@ export default function ContactPage() {
                           type="text"
                           id="firstName"
                           {...register('firstName')}
-                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-                            errors.firstName
+                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.firstName
                               ? 'border-red-500 focus:ring-red-500'
                               : 'border-gray-300 focus:ring-loop-orange-500'
-                          }`}
+                            }`}
                         />
                         {errors.firstName && (
                           <p className="mt-1 text-sm text-red-600">{errors.firstName.message}</p>
@@ -325,11 +331,10 @@ export default function ContactPage() {
                           type="text"
                           id="lastName"
                           {...register('lastName')}
-                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-                            errors.lastName
+                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.lastName
                               ? 'border-red-500 focus:ring-red-500'
                               : 'border-gray-300 focus:ring-loop-orange-500'
-                          }`}
+                            }`}
                         />
                         {errors.lastName && (
                           <p className="mt-1 text-sm text-red-600">{errors.lastName.message}</p>
@@ -346,11 +351,10 @@ export default function ContactPage() {
                           type="email"
                           id="email"
                           {...register('email')}
-                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-                            errors.email
+                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.email
                               ? 'border-red-500 focus:ring-red-500'
                               : 'border-gray-300 focus:ring-loop-orange-500'
-                          }`}
+                            }`}
                         />
                         {errors.email && (
                           <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
@@ -364,11 +368,10 @@ export default function ContactPage() {
                           type="tel"
                           id="phone"
                           {...register('phone')}
-                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-                            errors.phone
+                          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.phone
                               ? 'border-red-500 focus:ring-red-500'
                               : 'border-gray-300 focus:ring-loop-orange-500'
-                          }`}
+                            }`}
                         />
                         {errors.phone && (
                           <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
@@ -384,11 +387,10 @@ export default function ContactPage() {
                         type="text"
                         id="company"
                         {...register('company')}
-                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-                          errors.company
+                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.company
                             ? 'border-red-500 focus:ring-red-500'
                             : 'border-gray-300 focus:ring-loop-orange-500'
-                        }`}
+                          }`}
                       />
                       {errors.company && (
                         <p className="mt-1 text-sm text-red-600">{errors.company.message}</p>
@@ -402,11 +404,10 @@ export default function ContactPage() {
                       <select
                         id="service"
                         {...register('service')}
-                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-                          errors.service
+                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.service
                             ? 'border-red-500 focus:ring-red-500'
                             : 'border-gray-300 focus:ring-loop-orange-500'
-                        }`}
+                          }`}
                       >
                         <option value="">Select a service</option>
                         <option value="petroleum">Petroleum Products Trading</option>
@@ -431,11 +432,10 @@ export default function ContactPage() {
                         rows={4}
                         {...register('message')}
                         placeholder="Please provide details about your requirements..."
-                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-                          errors.message
+                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.message
                             ? 'border-red-500 focus:ring-red-500'
                             : 'border-gray-300 focus:ring-loop-orange-500'
-                        }`}
+                          }`}
                       ></textarea>
                       {errors.message && (
                         <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
@@ -459,9 +459,9 @@ export default function ContactPage() {
                         </>
                       )}
                     </Button>
-                </form>
-              </CardContent>
-            </Card>
+                  </form>
+                </CardContent>
+              </Card>
             </motion.div>
           </div>
         </div>

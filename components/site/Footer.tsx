@@ -201,9 +201,23 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
             {/* Column 4: Newsletter/CTA */}
             <div className="lg:col-span-1">
               <h3 className="text-lg font-semibold text-white mb-6">Stay Connected</h3>
-              <p className="text-gray-200 text-sm mb-6">
-                Get updates on our latest projects, services, and industry insights.
+              <p className="text-gray-200 text-sm mb-4">
+                Subscribe to receive our latest insights and service updates.
               </p>
+              <ul className="text-xs text-gray-400 space-y-2 mb-6 ml-1">
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-teal-400 rounded-full mr-2" />
+                  Commodity Trading
+                </li>
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-teal-400 rounded-full mr-2" />
+                  Logistics Management
+                </li>
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-teal-400 rounded-full mr-2" />
+                  Professional Advisory
+                </li>
+              </ul>
               
               <div className="space-y-4">
                 {/* Newsletter Signup */}
@@ -222,8 +236,8 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
                       Subscribe
                     </button>
                   </div>
-                  <p className="text-xs text-gray-400">
-                    Get project updates, industry insights, and equipment availability alerts.
+                  <p className="text-[10px] text-gray-500 italic">
+                    Stay updated on our global trading and logistics operations.
                   </p>
                 </form>
                 

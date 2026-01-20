@@ -77,7 +77,8 @@ const productCategories = [
       'Copper Concentrate',
       'Aluminum Ingots',
       'Copper Cobalt',
-      'Tanzanite (Gemstone Grade)'
+      'Tanzanite (Gemstone Grade)',
+      'Tantalite'
     ],
     keyFeatures: [
       'African sourced',
@@ -201,9 +202,8 @@ export default function ProductCategories({
                     <div className="absolute inset-0 bg-black/20" />
                     <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
                       <category.icon className="h-12 w-12 mb-2" />
-                      <span className={`text-xs px-2 py-1 rounded-full bg-white/20 ${
-                        category.availability === 'In Stock' ? 'text-green-100' : 'text-yellow-100'
-                      }`}>
+                      <span className={`text-xs px-2 py-1 rounded-full bg-white/20 ${category.availability === 'In Stock' ? 'text-green-100' : 'text-yellow-100'
+                        }`}>
                         {category.availability}
                       </span>
                     </div>
@@ -244,9 +244,8 @@ export default function ProductCategories({
                     {/* Expand/Collapse Indicator */}
                     <div className="flex items-center justify-center mt-4">
                       <ChevronRight
-                        className={`h-5 w-5 text-loop-orange-600 transition-transform ${
-                          selectedCategory === category.id ? 'rotate-90' : ''
-                        }`}
+                        className={`h-5 w-5 text-loop-orange-600 transition-transform ${selectedCategory === category.id ? 'rotate-90' : ''
+                          }`}
                       />
                     </div>
 
@@ -303,11 +302,10 @@ export default function ProductCategories({
                         </div>
                         <div>
                           <h3 className="text-xl font-bold text-navy-800">{category.title}</h3>
-                          <span className={`text-xs px-2 py-1 rounded-full ${
-                            category.availability === 'In Stock'
+                          <span className={`text-xs px-2 py-1 rounded-full ${category.availability === 'In Stock'
                               ? 'bg-green-100 text-green-800'
                               : 'bg-yellow-100 text-yellow-800'
-                          }`}>
+                            }`}>
                             {category.availability}
                           </span>
                         </div>

@@ -75,9 +75,8 @@ export default function HomePage() {
         {heroImages.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${
-              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+              }`}
             style={{
               backgroundImage: `url('${image.src}')`,
               backgroundSize: "cover",
@@ -86,8 +85,8 @@ export default function HomePage() {
             }}
           />
         ))}
-        <div className="absolute inset-0 z-10 bg-gradient-to-br from-navy-900/70 via-navy-800/60 to-black/50"></div>
-        
+        <div className="absolute inset-0 z-10 bg-gradient-to-br from-navy-900/80 via-navy-800/60 to-black/50"></div>
+
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -135,11 +134,10 @@ export default function HomePage() {
             <button
               key={index}
               onClick={() => setCurrentImageIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentImageIndex
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentImageIndex
                   ? 'bg-loop-orange-400 scale-110'
                   : 'bg-white/50 hover:bg-white/70'
-              }`}
+                }`}
               aria-label={`View image ${index + 1}`}
             />
           ))}
@@ -362,7 +360,7 @@ export default function HomePage() {
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Contact our team today to discuss your petroleum, precious metals, or commodity trading needs.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
               <Button size="lg" className="bg-loop-orange-600 hover:bg-loop-orange-700" asChild>
                 <Link href="/contact">
@@ -377,7 +375,7 @@ export default function HomePage() {
                 </a>
               </Button>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-gray-600">
               <div className="flex items-center">
                 <Phone className="h-5 w-5 mr-2 text-loop-orange-600" />

@@ -26,7 +26,7 @@ const productCategories = [
     title: 'Refined Petroleum Products',
     icon: Fuel,
     description: 'High-quality refined petroleum products meeting international standards',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: '/refined-petroleum.png',
     products: [
       {
         name: 'Gasoline (RON 92 to RON 95)',
@@ -92,8 +92,8 @@ const productCategories = [
     id: 'minerals',
     title: 'Minerals',
     icon: Mountain,
-    description: 'A varied portfolio sourced through strategic partnerships in Africa including Copper Cathodes, Copper Concentrate, Copper Cobalt, Aluminum Ingots and Tanzanite',
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    description: 'A varied portfolio sourced through strategic partnerships in Africa including Copper Cathodes, Copper Concentrate, Copper Cobalt, Aluminum Ingots, Tantalite and Tanzanite',
+    image: '/minerals-stockpile.png',
     products: [
       {
         name: 'Copper Cathodes',
@@ -129,6 +129,13 @@ const productCategories = [
         description: 'Premium Tanzanite gemstones sourced directly from African operations.',
         applications: ['Jewelry', 'Investment', 'Collectibles'],
         availability: 'Limited Stock'
+      },
+      {
+        name: 'Tantalite',
+        specifications: ['High tantalum content', 'African sourced', 'Industrial grade', 'Quality certified'],
+        description: 'High-quality Tantalite ore sourced through strategic African partnerships.',
+        applications: ['Electronics', 'Capacitors', 'Aerospace', 'High-strength alloys'],
+        availability: 'Available on Order'
       }
     ]
   },
@@ -137,7 +144,7 @@ const productCategories = [
     title: 'Petroleum By-products',
     icon: Zap,
     description: 'A range of products including those essential for various industries including Sulphur Granules, Sulphuric Acid, and Urea',
-    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: '/petroleum-byproducts.png',
     products: [
       {
         name: 'Sulphur Granules',
@@ -193,8 +200,18 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-navy-800 to-slate-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 bg-navy-900 text-white overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/products-hero.png"
+            alt="Global Commodity Trading"
+            className="w-full h-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/80 to-transparent" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -329,67 +346,66 @@ export default function ProductsPage() {
                       product.description.toLowerCase().includes(searchTerm.toLowerCase())
                     )
                     .map((product, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      <Card className="h-full hover:shadow-lg transition-shadow">
-                        <CardHeader>
-                          <CardTitle className="flex justify-between items-start">
-                            <div>
-                              <h4 className="text-lg font-bold text-navy-800">{product.name}</h4>
-                              <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
-                                product.availability === 'In Stock'
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                      >
+                        <Card className="h-full hover:shadow-lg transition-shadow">
+                          <CardHeader>
+                            <CardTitle className="flex justify-between items-start">
+                              <div>
+                                <h4 className="text-lg font-bold text-navy-800">{product.name}</h4>
+                                <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${product.availability === 'In Stock'
                                   ? 'bg-green-100 text-green-800'
                                   : product.availability === 'Available on Order'
-                                  ? 'bg-yellow-100 text-yellow-800'
-                                  : 'bg-red-100 text-red-800'
-                              }`}>
-                                {product.availability}
-                              </span>
-                            </div>
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-foreground/70 text-sm mb-4">{product.description}</p>
-
-                          {/* Specifications */}
-                          <div className="mb-4">
-                            <h5 className="text-sm font-semibold text-navy-800 mb-2">Specifications:</h5>
-                            <ul className="space-y-1">
-                              {product.specifications.map((spec, idx) => (
-                                <li key={idx} className="flex items-center text-xs text-foreground/60">
-                                  <CheckCircle className="h-3 w-3 text-loop-orange-600 mr-2 flex-shrink-0" />
-                                  {spec}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          {/* Applications */}
-                          <div className="mb-4">
-                            <h5 className="text-sm font-semibold text-navy-800 mb-2">Applications:</h5>
-                            <div className="flex flex-wrap gap-1">
-                              {product.applications.map((app, idx) => (
-                                <span key={idx} className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs">
-                                  {app}
+                                    ? 'bg-yellow-100 text-yellow-800'
+                                    : 'bg-red-100 text-red-800'
+                                  }`}>
+                                  {product.availability}
                                 </span>
-                              ))}
-                            </div>
-                          </div>
+                              </div>
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-foreground/70 text-sm mb-4">{product.description}</p>
 
-                          <Button size="sm" className="w-full bg-loop-orange-600 hover:bg-loop-orange-700" asChild>
-                            <Link href="/contact">
-                              Request Information
-                            </Link>
-                          </Button>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  ))}
+                            {/* Specifications */}
+                            <div className="mb-4">
+                              <h5 className="text-sm font-semibold text-navy-800 mb-2">Specifications:</h5>
+                              <ul className="space-y-1">
+                                {product.specifications.map((spec, idx) => (
+                                  <li key={idx} className="flex items-center text-xs text-foreground/60">
+                                    <CheckCircle className="h-3 w-3 text-loop-orange-600 mr-2 flex-shrink-0" />
+                                    {spec}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Applications */}
+                            <div className="mb-4">
+                              <h5 className="text-sm font-semibold text-navy-800 mb-2">Applications:</h5>
+                              <div className="flex flex-wrap gap-1">
+                                {product.applications.map((app, idx) => (
+                                  <span key={idx} className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs">
+                                    {app}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+
+                            <Button size="sm" className="w-full bg-loop-orange-600 hover:bg-loop-orange-700" asChild>
+                              <Link href="/contact">
+                                Request Information
+                              </Link>
+                            </Button>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    ))}
                 </div>
               </motion.div>
             ))}

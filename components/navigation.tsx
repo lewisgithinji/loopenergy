@@ -45,9 +45,8 @@ function NavLinks({
             <Link
               onClick={onClick}
               href={l.href}
-              className={`text-sm font-medium transition-colors ${
-                active ? activeLinkClasses : linkClasses
-              }`}
+              className={`text-sm font-medium transition-colors ${active ? activeLinkClasses : linkClasses
+                }`}
             >
               {l.label}
             </Link>
@@ -75,11 +74,10 @@ export default function Navigation() {
   }, [isHomePage]);
 
   const headerClasses = isHomePage
-    ? `fixed top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200"
-          : "bg-transparent"
-      }`
+    ? `fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled
+      ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200"
+      : "bg-gradient-to-b from-navy-900/60 via-navy-900/20 to-transparent backdrop-blur-[2px]"
+    }`
     : "sticky top-0 z-40 w-full border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm";
 
   const linkClasses = isHomePage && !isScrolled
@@ -95,12 +93,14 @@ export default function Navigation() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            key={isHomePage && !isScrolled ? "clear" : "dark"}
-            src={isHomePage && !isScrolled ? "/logo-clear.png" : "/logo-clear.png"}
+            src="/logo-clear.png"
             alt="Loop Energy"
             width={252}
             height={56}
-            className="h-14 w-auto"
+            className={`h-14 w-auto transition-all duration-500 ${isHomePage && !isScrolled
+              ? "drop-shadow-[0_0_15px_rgba(255,255,255,0.25)] brightness-110"
+              : "brightness-100"
+              }`}
             priority
           />
         </Link>
