@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,10 +45,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, 
-                rgba(10, 10, 10, 0.95) 0%, 
-                rgba(10, 10, 10, 0.8) 50%, 
-                rgba(10, 10, 10, 0.6) 100%);
+            background: linear-gradient(to top,
+                    rgba(10, 10, 10, 0.95) 0%,
+                    rgba(10, 10, 10, 0.8) 50%,
+                    rgba(10, 10, 10, 0.6) 100%);
         }
 
         .footer-content {
@@ -107,28 +108,6 @@
             border-radius: 2px;
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(64, 64, 64, 0.5);
-            border-radius: 50%;
-            color: #9ca3af;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: rgba(64, 64, 64, 0.8);
-            color: #14b8a6;
-        }
 
         .footer-bottom {
             margin-top: 4rem;
@@ -164,8 +143,13 @@
         }
 
         @keyframes slowZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.1);
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -173,7 +157,7 @@
                 animation: none;
                 transform: none;
             }
-            
+
             * {
                 transition: none !important;
             }
@@ -211,15 +195,21 @@
         }
     </style>
 </head>
+
 <body>
     <footer class="footer">
         <!-- Background Images -->
         <div class="footer-bg">
-            <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="" class="footer-bg-image active" id="bg-0">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="" class="footer-bg-image" id="bg-1">
-            <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="" class="footer-bg-image" id="bg-2">
-            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="" class="footer-bg-image" id="bg-3">
-            <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="" class="footer-bg-image" id="bg-4">
+            <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="" class="footer-bg-image active" id="bg-0">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="" class="footer-bg-image" id="bg-1">
+            <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="" class="footer-bg-image" id="bg-2">
+            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="" class="footer-bg-image" id="bg-3">
+            <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="" class="footer-bg-image" id="bg-4">
         </div>
 
         <!-- Overlay -->
@@ -234,7 +224,7 @@
                     <p style="color: #d1d5db; font-size: 0.875rem; line-height: 1.5; margin-bottom: 2rem;">
                         Powering growth with clean energy & automation solutions across East Africa.
                     </p>
-                    
+
                     <div style="margin-top: 2rem;">
                         <div style="display: flex; align-items: center; margin-bottom: 0.75rem; color: #d1d5db;">
                             <span style="margin-right: 0.75rem; color: #14b8a6;">📍</span>
@@ -242,11 +232,13 @@
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.75rem; color: #d1d5db;">
                             <span style="margin-right: 0.75rem; color: #14b8a6;">📞</span>
-                            <a href="tel:+254722517923" style="font-size: 0.875rem; color: #d1d5db; text-decoration: none;">+254 722 517923</a>
+                            <a href="tel:+254722517923"
+                                style="font-size: 0.875rem; color: #d1d5db; text-decoration: none;">+254 722 517923</a>
                         </div>
                         <div style="display: flex; align-items: center; color: #d1d5db;">
                             <span style="margin-right: 0.75rem; color: #14b8a6;">✉️</span>
-                            <a href="mailto:info@loopenergy.co.ke" style="font-size: 0.875rem; color: #d1d5db; text-decoration: none;">info@loopenergy.co.ke</a>
+                            <a href="mailto:info@loopenergy.co.ke"
+                                style="font-size: 0.875rem; color: #d1d5db; text-decoration: none;">info@loopenergy.co.ke</a>
                         </div>
                     </div>
                 </div>
@@ -268,20 +260,22 @@
 
                 <!-- Column 3: Resources -->
                 <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="/docs">📄 Documentation</a></li>
-                        <li><a href="/news">📖 Blog</a></li>
-                        <li><a href="/faq">❓ FAQ</a></li>
-                    </ul>
-
-                    <h4 style="font-size: 0.875rem; font-weight: 600; color: white; margin: 2rem 0 1rem 0;">Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#" aria-label="Follow Loop Energy on LinkedIn">💼</a>
-                        <a href="#" aria-label="Follow Loop Energy on Twitter">🐦</a>
-                        <a href="#" aria-label="Subscribe to Loop Energy YouTube">📺</a>
-                        <a href="https://wa.me/254722517923" aria-label="Contact Loop Energy on WhatsApp">💬</a>
+                    <h3>Global Reach</h3>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                        <span
+                            style="font-size: 0.75rem; color: #9ca3af; border: 1px solid #374151; padding: 0.25rem 0.5rem; border-radius: 1rem;">Nairobi,
+                            Kenya</span>
+                        <span
+                            style="font-size: 0.75rem; color: #9ca3af; border: 1px solid #374151; padding: 0.25rem 0.5rem; border-radius: 1rem;">Dubai,
+                            UAE</span>
                     </div>
+
+                    <h3>Compliance</h3>
+                    <ul class="footer-links">
+                        <li><span style="color: #14b8a6; margin-right: 0.5rem;">•</span> ISO 9001:2015</li>
+                        <li><span style="color: #14b8a6; margin-right: 0.5rem;">•</span> ISO 14001:2015</li>
+                        <li><span style="color: #14b8a6; margin-right: 0.5rem;">•</span> ISO 45001:2018</li>
+                    </ul>
                 </div>
 
                 <!-- Column 4: CTA -->
@@ -290,7 +284,7 @@
                     <p style="color: #d1d5db; font-size: 0.875rem; margin-bottom: 1.5rem;">
                         Get updates on our latest projects, services, and industry insights.
                     </p>
-                    
+
                     <div style="display: flex; flex-direction: column; gap: 1rem;">
                         <a href="/contact" class="btn btn-primary">Get In Touch</a>
                         <a href="/equipment-hire" class="btn btn-secondary">Equipment Hire</a>
@@ -308,7 +302,7 @@
                         Nairobi, Kenya
                     </p>
                 </div>
-                
+
                 <div class="footer-bottom-links">
                     <a href="/terms">Terms</a>
                     <a href="/privacy">Privacy</a>
@@ -329,14 +323,15 @@
             setInterval(() => {
                 // Remove active class from current image
                 images[currentImageIndex].classList.remove('active');
-                
+
                 // Move to next image
                 currentImageIndex = (currentImageIndex + 1) % totalImages;
-                
+
                 // Add active class to new image
                 images[currentImageIndex].classList.add('active');
             }, 4000); // 4 second interval
         }
     </script>
 </body>
+
 </html>

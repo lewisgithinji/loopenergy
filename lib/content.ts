@@ -1,224 +1,192 @@
 // lib/content.ts
-// Central place to paste authoritative text from "Loop Energy Company Profile Priceless.pdf".
-// Replace every FROM_PROFILE string with exact copy from the PDF.
+// Central source for Loop Energy Limited content, aligned with the latest corporate document.
 
 export const site = {
   name: "Loop Energy Limited",
   url: "https://loopenergy.netlify.app",
   logo: "/logo-clear.png",
   brand: {
-    primary: "#0b2545",
-    accent: "#1ea7a1",
+    primary: "#0b2545", // Deep Navy
+    accent: "#00a8e1",  // Vibrant Cyan/Blue (Updated for premium feel)
   },
   contacts: {
-    phone: "+254 722 517 923",
-    email: "info@loopenergy.co.ke",
-    address: "Nairobi, Kenya",
-    whatsappUrl: "https://wa.me/254722517923",
-  },
-  social: {
-    linkedin: "#",
-    twitter: "#",
+    phone: "+254711409228",
+    email: "info@loopenergyltd.com",
+    whatsappUrl: "https://wa.me/254711409228",
+    locations: {
+      kenya: {
+        address: "First Floor, NHC Building, Aghakhan Walk, P.O Box 51100-00100, Nairobi Kenya.",
+        phone: "+254 722517923",
+      },
+      dubai: {
+        address: "Business Center, Al Shmookh Bldg., UAQ Free Trade Zone, Umm Al Quwain, Dubai, UAE.",
+        phone: "+254 722517923", // Using central number as per doc contact section
+      }
+    }
   },
 };
 
-export const orgJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: site.name,
-  url: site.url,
-  logo: site.logo,
-  contactPoint: [
-    {
-      "@type": "ContactPoint",
-      telephone: site.contacts.phone,
-      contactType: "customer service",
-      areaServed: "KE",
-      availableLanguage: ["en"],
-    },
-  ],
+export const home = {
+  points: [
+    "Loop Energy Limited is a trading company based in Dubai and Kenya, founded in 2014 and incorporated in 2018.",
+    "We specialize in managing and sourcing a diverse portfolio of high-quality refined petroleum products, by-products, precious metals, and minerals.",
+    "Founded by seasoned industry professionals with extensive market knowledge. The team blends veteran expertise with innovative perspectives.",
+    "Our company delivers efficient, reliable, transparent, and value-driven solutions to its global clients.",
+    "Strategic collaborations with producers, refineries, logistics & storage partners, terminal operators, and mine owners ensure access to the full supply chain.",
+    "Our extensive network allows us to provide tailored solutions from sourcing to timely delivery.",
+    "Loop Energy operates in Africa, the UAE, and Europe.",
+    "Our priority is to build strong, long-term client relationships by offering clear, transparent, and results-driven services."
+  ]
 };
 
 export const about = {
-  summary:
-    "Loop Energy Limited is a leading petroleum supplier, infrastructure developer, and equipment hire company serving Kenya and East Africa. We deliver comprehensive energy solutions, civil engineering projects, and construction equipment rental services to support critical infrastructure development across the region.",
-};
-
-export const equipmentHire = {
-  heroTitle: "Equipment Hire",
-  heroSubtitle:
-    "Modern fleet of construction equipment with professional operators and comprehensive support for your next project.",
-  overview:
-    "Our equipment hire division provides a comprehensive range of modern, well-maintained construction equipment with experienced operators. We maintain the highest safety standards, offer flexible rental terms, and provide 24/7 technical support to ensure your project success.",
-  categories: [
-    {
-      title: "Heavy Machinery",
-      description:
-        "Excavators, bulldozers, graders, wheel loaders and heavy earthmoving equipment for construction and infrastructure projects.",
-      items: [
-        { name: "Excavator 20–30T", specs: "1.0-1.4m³ bucket, 6-7.5m dig depth" },
-        { name: "Bulldozer D6/D8", specs: "3.2m³ blade, ripper attachments" },
-      ],
-    },
-    {
-      title: "Lifting & Cranes",
-      description: "Mobile cranes, truck-mounted cranes, and material handling equipment for lifting and positioning operations.",
-      items: [
-        { name: "25T Mobile Crane", specs: "31m boom length, 26m max radius" },
-        { name: "Forklift 3–5T", specs: "Variable mast height, diesel/electric" },
-      ],
-    },
-    {
-      title: "Power & Generation",
-      description: "Generators, transformers, and power distribution equipment for temporary and backup power solutions.",
-      items: [{ name: "Diesel Generator 250 kVA", specs: "Auto transfer switch, sound-attenuated" }],
-    },
-  ],
-};
-
-export type Project = {
-  id: string;
-  title: string;
-  sector: string;
-  summary: string;
-  location?: string;
-  image?: string;
-  isFlagship?: boolean;
-};
-export const projects: Project[] = [
-  {
-    id: "p1",
-    title: "Kenya Pipeline Infrastructure Development",
-    sector: "Energy",
-    summary:
-      "Major petroleum pipeline infrastructure project supporting fuel distribution across Kenya. Delivered comprehensive civil works, equipment supply, and ongoing maintenance services ensuring reliable energy supply to key regions.",
-    location: "Nairobi to Mombasa Corridor",
-    image: "/images/projects/placeholder-1.jpg",
-    isFlagship: true,
-  },
-  {
-    id: "p2",
-    title: "Urban Road Construction Program",
-    sector: "Infrastructure",
-    summary: "Multi-phase urban road construction and rehabilitation program across major Kenyan cities. Provided heavy equipment, skilled operators, and project management expertise delivering improved transportation infrastructure.",
-    location: "Nairobi, Kisumu, Nakuru",
-    image: "/images/projects/placeholder-2.jpg",
-  },
-];
-
-export const hse = {
-  heroTitle: "HSE & Sustainability",
-  heroSubtitle:
-    "Our unwavering commitment to Health, Safety, Environment, and sustainable operations across all projects and communities we serve.",
-  overview:
-    "At Loop Energy, we maintain a zero-harm culture with leadership commitment at every level. Our HSE policy framework ensures the safety of our people, protection of the environment, and positive impact on communities through continuous improvement and rigorous safety standards.",
+  established: "Established in 2014 and incorporated in 2018.",
+  summary: "Loop Energy Limited is a trading company with operations in Dubai and Kenya. The firm is renowned for its proficiency in managing a wide-ranging portfolio of high-quality refined petroleum products, by-products, precious metals, and minerals.",
+  team: "Founded and led by seasoned industry professionals with extensive market knowledge, the company is dedicated to offering efficient, reliable, and value-driven solutions to its global clientele. The Loop Energy team combines the wisdom of veteran experts with the innovative perspectives of skilled professionals.",
+  network: "The company ensures its clients can access a full spectrum of resources by collaborating strategically with producers, refineries, logistics & storage partners, terminal operators, and mine owners. With a market presence across Africa, UAE, and Europe, Loop Energy prioritizes building strong, long-term relationships.",
+  vision: "To be the premier partner in energy and precious metals, using innovation to elevate industry standards for quality, reliability, and transparency.",
+  strategy: "Loop Energy's robust strategy is built on four core pillars: operational excellence, market differentiation, client relationship management, and risk management.",
   pillars: [
     {
-      title: "Safety First",
-      description:
-        "Comprehensive safety culture with continuous training, permit-to-work systems, thorough risk assessments, and toolbox talks. We maintain zero-tolerance for unsafe practices and invest in world-class safety equipment and protocols.",
+      title: "Operational Excellence",
+      description: "Leveraging technology and strategic partnerships to ensure efficient, cost-effective, and visible supply chains."
     },
     {
-      title: "Environmental Care",
-      description:
-        "Proactive environmental protection through emissions monitoring, spill prevention systems, comprehensive waste management programs, and biodiversity conservation initiatives. We implement sustainable practices across all operations.",
+      title: "Market Differentiation",
+      description: "Combining a diverse portfolio with the blended expertise of veterans and new professionals to deliver customized solutions."
     },
     {
-      title: "Community Impact",
-      description:
-        "Strong community engagement through local hiring programs, skills development initiatives, corporate social responsibility projects, and local supplier development. We believe in creating shared value for all stakeholders.",
+      title: "Client Relationship Management",
+      description: "Transparent communication and tailored services to build long-term partnerships across Africa, UAE, and Europe."
     },
     {
-      title: "Quality Excellence",
-      description:
-        "ISO-certified quality management systems with regular audits, continuous improvement processes (Kaizen), and strict adherence to international standards ensuring delivery excellence in all our operations.",
-    },
+      title: "Risk Management",
+      description: "Stringent credit vetting and regulatory compliance to ensure stability in volatile commodity markets."
+    }
   ],
-  certifications: [
-    "ISO 9001:2015 Quality Management Systems",
-    "ISO 14001:2015 Environmental Management Systems",
-    "ISO 45001:2018 Occupational Health & Safety Management",
-  ],
-  policyLink: "/pdfs/hse-policy.pdf",
+  values: [
+    "Integrity and Transparency",
+    "Expertise and Innovation",
+    "Reliability and Results-Driven Service",
+    "Strategic Collaboration",
+    "Excellence and Accountability"
+  ]
 };
 
-export const careers = {
-  heroTitle: "Careers at Loop Energy",
-  heroSubtitle:
-    "Join a safety‑first team delivering energy and infrastructure across Kenya. Grow with responsibility, mentorship and impact.",
-  intro:
-    "At Loop Energy, you’ll work on meaningful petroleum, power and infrastructure projects that keep communities and businesses moving. We value ownership, craftsmanship and teamwork. We invest in people through training, safe work practices and clear growth paths, and we hire based on talent and attitude—equal opportunity for all.",
-  benefits: [
-    "Competitive pay aligned to role and experience",
-    "Medical cover and wellness support",
-    "Training, certifications and paid learning time",
-    "PPE and world‑class safety standards",
-    "Clear career progression and mentorship",
-    "Inclusive, respectful culture",
-    "Project‑aware flexibility and time off",
-    "Transport and field allowances where applicable",
-  ],
-  roles: [
-    {
-      id: "r1",
-      title: "HSE Officer",
-      location: "Nairobi, Kenya",
-      type: "Full-time",
-      summary:
-        "Lead site HSE compliance: toolbox talks, PTW, audits, incident reporting and corrective actions. Coach teams to a zero‑harm culture.",
-      applyTo: "careers@loopenergy.co.ke",
-    },
-    {
-      id: "r2",
-      title: "Project Engineer",
-      location: "Nairobi, Kenya",
-      type: "Full-time",
-      summary:
-        "Plan and deliver scope across civil/MEP works: scheduling, vendor coordination, quality checks and progress reporting.",
-      applyTo: "careers@loopenergy.co.ke",
-    },
-  ],
+export const trading = {
+  sourcingAndProcurement: "Loop Energy specializes in sourcing and procurement, leveraging a wide network of strategic partnerships with producers, refineries, and mine owners to ensure a steady, high-quality supply... all while adhering to stringent client specifications and industry standards.",
+  commodityTrading: {
+    description: "Loop Energy Limited leverages its global market reach and deep industry expertise to provide efficient, innovative, and transparent commodity trading services. We enable the effective buying and selling of a diverse portfolio on F.O.B & C.I.F basis.",
+    categories: [
+      {
+        name: "Refined Petroleum Products",
+        items: ["EN590 10 & 50 PPM", "Diesel D6", "Gasoline", "Jet A1 Fuel"]
+      },
+      {
+        name: "Precious Metals",
+        items: ["High-purity Gold Bars", "Silver Bars"]
+      },
+      {
+        name: "Minerals",
+        items: ["Copper Cathodes", "Copper Concentrate", "Copper Cobalt", "Aluminum Ingots", "Tanzanite"]
+      },
+      {
+        name: "Petroleum By-products",
+        items: ["Sulphur Granules", "Sulphuric Acid", "Urea", "Bitumen"]
+      }
+    ]
+  },
+  energyMarkets: {
+    description: "Operational hubs strategically positioned in key international energy centers:",
+    hubs: [
+      {
+        name: "Rotterdam",
+        description: "A vital gateway to European markets and a major refining hub."
+      },
+      {
+        name: "Jurong",
+        description: "A critical trading and refining center serving the robust Asian markets."
+      },
+      {
+        name: "Fujairah",
+        description: "A pivotal global bunkering and oil storage hub at the crossroads of East and West."
+      }
+    ]
+  }
 };
 
-export type NewsItem = {
-  id: string;
-  title: string;
-  date: string; // ISO
-  summary: string;
-  image?: string;
-};
-export const news: NewsItem[] = [
+export const products = [
   {
-    id: "n1",
-    title: "Loop Energy Secures Major Infrastructure Contract Worth KES 2.5 Billion",
-    date: "2024-12-15",
-    summary:
-      "Loop Energy has been awarded a significant infrastructure development contract worth KES 2.5 billion for road construction and petroleum supply services. The multi-phase project spans three counties and will create over 500 local jobs while improving transportation connectivity across the region. The contract includes civil engineering works, fuel supply logistics, and equipment hire services over a 24-month period.",
-    image: "/images/news/contract-award.jpg",
+    name: "Gasoline",
+    description: "Gasoline is the driving force that powers development and commerce throughout the world. Loop Energy Ultimate supplies gasoline from RON 92, to RON 95. We provide competitive prices, coupled with steady supply and expert delivery.",
+    specs: "RON 92, RON 95",
+    regions: "Africa, Europe, UAE"
   },
   {
-    id: "n2", 
-    title: "Fleet Expansion: 25 New Heavy Equipment Units Added to Meet Growing Demand",
-    date: "2024-11-22",
-    summary:
-      "Our equipment hire division has completed a major fleet expansion with 25 new heavy machinery units including CAT excavators, Komatsu bulldozers, and mobile cranes. This 40% capacity increase enables us to serve more clients simultaneously, reduce project delivery times, and maintain our commitment to providing modern, well-maintained equipment with certified operators.",
-    image: "/images/news/fleet-expansion.jpg",
+    name: "Gasoil",
+    description: "Loop Energy is a known trader, supplier, and distributor of gas oil throughout our network. We carry gas oil from 2500PPM to 10PPM. Gas oil has numerous applications, including powering trucks, trains, and boats.",
+    specs: "2500PPM to 10PPM"
   },
   {
-    id: "n3",
-    title: "Loop Energy Achieves ISO 45001:2018 Health & Safety Certification",
-    date: "2024-10-08", 
-    summary:
-      "We are proud to announce our achievement of ISO 45001:2018 Occupational Health and Safety Management Systems certification. This milestone reinforces our zero-harm commitment and demonstrates our systematic approach to protecting workers, contractors, and communities. The certification covers all our operations including equipment hire, petroleum supply, and infrastructure development services.",
-    image: "/images/news/iso-certification.jpg",
+    name: "Fuel Oil",
+    description: "Fuel oil is the primary propellant in marine vessels. We trade in large quantities including RMG 180, RME 180, RMG 380, and various other qualities.",
+    specs: "RMG 180, RME 180, RMG 380"
   },
   {
-    id: "n4",
-    title: "Community Impact: 1,000+ Youth Trained in Construction Skills Program",
-    date: "2024-09-14",
-    summary:
-      "Our Corporate Social Responsibility initiative has successfully trained over 1,000 young Kenyans in construction and heavy equipment operation skills. The six-month program includes hands-on training, safety certification, and job placement support. Over 80% of graduates have secured employment in the construction and infrastructure sector, contributing to Kenya's economic development and youth empowerment goals.",
-    image: "/images/news/youth-training.jpg",
+    name: "Jet Fuel",
+    description: "Used primarily to power jet engines. We primarily deal in Jet A-1 fuel sourced directly from refineries throughout the MENA region.",
+    specs: "Jet A-1"
   },
+  {
+    name: "Bitumen",
+    description: "We trade different grades and different packaging of bitumen. Our product range includes 30/40, 50/70, 60/70, 80/100 amongst others. We deal in bulk, flexi bags, bitutainers etc.",
+    grades: ["30/40", "50/70", "60/70", "80/100"]
+  },
+  {
+    name: "Precious Metals",
+    description: "Including high-purity Gold and Silver Bars."
+  },
+  {
+    name: "Minerals",
+    description: "A varied portfolio sourced through strategic partnerships in Africa i.e Copper Cathodes, Copper Concentrate, Copper cobalt, Aluminum ingots and Tanzanite."
+  },
+  {
+    name: "Petroleum By-products",
+    description: "A range of products including Sulphur granules, Sulphuric acid, Urea, and Bitumen."
+  }
 ];
 
+export const services = [
+  {
+    title: "Operations Management",
+    description: "Delivering operational excellence by leveraging AI-driven insights and real-time data analytics to directly address clients specific internal challenges."
+  },
+  {
+    title: "Logistics Management",
+    description: "Comprehensive and tailored logistics and supply chain management, ensuring seamless resource access and efficient, on-schedule product delivery."
+  },
+  {
+    title: "Financial Structuring & Advisory",
+    description: "Guiding clients to optimize their capital structure for sustainable growth. Expert advice on balancing debt and equity, and securing favorable financing terms."
+  },
+  {
+    title: "Strategic Transaction Advisory",
+    description: "Expert guidance for navigating the complexities of volatile commodity and precious metals markets. Comprehensive due diligence and deal structuring."
+  },
+  {
+    title: "Commodity Sourcing & Trading Management",
+    description: "End-to-end services connecting clients with a global network of producers and consumers of crude oil, refined petroleum, and precious metals."
+  }
+];
+
+export const partnerships = {
+  description: "Our commitment to building strong relationships with producers, suppliers, and end-users allows us to create a seamless trading environment.",
+  stakeholders: [
+    "Refineries",
+    "International Banks",
+    "International Suppliers",
+    "Shipping lines",
+    "Logistics & Storage firms",
+    "Terminal Operators"
+  ]
+};

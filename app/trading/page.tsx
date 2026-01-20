@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import {
@@ -81,14 +82,17 @@ export default function TradingPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section
-        className="relative py-24 overflow-hidden bg-navy-900 text-white"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(11, 37, 69, 0.75), rgba(11, 37, 69, 0.75)), url("/trading-hero.png")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
+      <section className="relative py-24 overflow-hidden bg-navy-900 text-white">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/trading-hero.png"
+            alt="Global Trading"
+            fill
+            className="object-cover opacity-25"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-900/80 via-navy-900/40 to-navy-900/80" />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div

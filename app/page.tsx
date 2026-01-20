@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Fuel, Building, Wrench, Phone, Mail, MapPin, ArrowRight, Globe, Shield, Users, Award } from 'lucide-react'
+import { Fuel, Building, Wrench, Phone, Mail, MapPin, ArrowRight, Globe, Shield, Users, Award, MessageCircle } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { site } from '@/lib/content'
 import { useState, useEffect } from 'react'
 
 const services = [
@@ -41,16 +43,16 @@ const clients = [
 
 const heroImages = [
   {
-    src: '/hero-tanker.jpg',
-    alt: 'Global oil tanker operations'
+    src: '/1.jpeg',
+    alt: 'Loop Energy Global operations'
   },
   {
-    src: '/hero-refinery.jpg',
-    alt: 'Modern refinery complex'
+    src: '/2.jpeg',
+    alt: 'Premium petroleum supplies'
   },
   {
-    src: '/hero-trading.jpg',
-    alt: 'Commodity trading operations'
+    src: '/3.jpeg',
+    alt: 'Energy market trading'
   }
 ]
 
@@ -77,13 +79,16 @@ export default function HomePage() {
             key={index}
             className={`absolute inset-0 z-0 transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
               }`}
-            style={{
-              backgroundImage: `url('${image.src}')`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat"
-            }}
-          />
+          >
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              className="object-cover"
+              priority={index === 0}
+              quality={90}
+            />
+          </div>
         ))}
         <div className="absolute inset-0 z-10 bg-gradient-to-br from-navy-900/80 via-navy-800/60 to-black/50"></div>
 
@@ -95,14 +100,13 @@ export default function HomePage() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Global Energy Trading.
+              {site.name}
               <br />
-              <span className="text-loop-orange-400">Reliable Supply Solutions.</span>
+              <span className="text-loop-orange-400">Global Energy Trading.</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto">
-              International trading company specializing in refined petroleum products, precious metals,
-              and minerals across Africa, UAE, and Europe since 2014.
+              Loop Energy Limited is a trading company based in Dubai and Kenya, specializing in managing and sourcing a diverse portfolio of high-quality refined petroleum products, precious metals, and minerals.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
@@ -118,7 +122,7 @@ export default function HomePage() {
                   Trading Services
                 </Link>
               </Button>
-              <Button size="lg" className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/50 hover:bg-white hover:text-navy-800 shadow-lg transition-all" asChild>
+              <Button size="lg" variant="outline" className="bg-transparent text-white border-white/50 hover:bg-white hover:text-navy-900 shadow-lg transition-all" asChild>
                 <Link href="/contact">
                   <Building className="mr-2 h-5 w-5" />
                   Get Quote
@@ -135,8 +139,8 @@ export default function HomePage() {
               key={index}
               onClick={() => setCurrentImageIndex(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentImageIndex
-                  ? 'bg-loop-orange-400 scale-110'
-                  : 'bg-white/50 hover:bg-white/70'
+                ? 'bg-loop-orange-400 scale-110'
+                : 'bg-white/50 hover:bg-white/70'
                 }`}
               aria-label={`View image ${index + 1}`}
             />
@@ -146,7 +150,7 @@ export default function HomePage() {
         {/* Mobile Call CTA */}
         <div className="fixed bottom-4 right-4 z-50 lg:hidden">
           <Button size="icon" className="rounded-full h-14 w-14 bg-loop-orange-600 hover:bg-loop-orange-700 shadow-lg" asChild>
-            <a href="tel:+254722517923" aria-label="Call us">
+            <a href="tel:+254711409228" aria-label="Call us">
               <Phone className="h-6 w-6 text-white" />
             </a>
           </Button>
@@ -167,7 +171,7 @@ export default function HomePage() {
               Our Core Business Areas
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive trading solutions across petroleum products, precious metals, and global commodity markets.
+              Loop Energy ensures its clients have access to a full spectrum of resources across the entire supply chain through strategic collaborations.
             </p>
           </motion.div>
 
@@ -201,12 +205,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Client Logos */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      {/* Client Logos with Enhanced Background */}
+      <section className="py-24 bg-navy-900 relative overflow-hidden">
         {/* Background decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-loop-orange-100 rounded-full opacity-20 blur-3xl"></div>
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-100 rounded-full opacity-20 blur-3xl"></div>
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/trading-hero.png"
+            alt="Partners Background"
+            fill
+            className="object-cover opacity-20 grayscale"
+          />
+          <div className="absolute inset-0 bg-navy-900/60" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -217,10 +226,10 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-navy-800 mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Trusted Global Partners
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Building strategic relationships with leading industry players across Africa, UAE, and Europe
             </p>
           </motion.div>
@@ -265,19 +274,34 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Stats section */}
+          {/* WhatsApp CTA */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
             viewport={{ once: true }}
-            className="mt-16 text-center"
+            className="mt-20 text-center"
           >
-            <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md border border-gray-100">
-              <Globe className="h-5 w-5 text-loop-orange-600" />
-              <span className="text-sm font-semibold text-navy-800">
-                Operating across 3 continents with 8+ partner categories
-              </span>
+            <div className="inline-block p-1 rounded-2xl bg-gradient-to-r from-loop-orange-500 to-green-500">
+              <div className="bg-navy-800 rounded-xl p-8 backdrop-blur-md">
+                <h3 className="text-2xl font-bold text-white mb-4">Become a Strategic Partner</h3>
+                <p className="text-gray-300 mb-8 max-w-md mx-auto">
+                  Join our network of global industry leaders and expand your trading reach.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto" asChild>
+                    <a href="https://wa.me/254711409228" target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="mr-2 h-5 w-5" />
+                      Contact on WhatsApp
+                    </a>
+                  </Button>
+                  <Button size="lg" variant="outline" className="bg-transparent text-white border-white/50 hover:bg-white hover:text-navy-900 w-full sm:w-auto transition-all" asChild>
+                    <Link href="/contact">
+                      Partnership Inquiry
+                    </Link>
+                  </Button>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -297,8 +321,7 @@ export default function HomePage() {
               Our Strategic Approach
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Built on four core pillars: operational excellence, market differentiation,
-              client relationship management, and comprehensive risk management.
+              Our priority is to build strong, long-term client relationships by offering clear, transparent, and results-driven services.
             </p>
           </motion.div>
 
@@ -368,8 +391,8 @@ export default function HomePage() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
-                <a href="tel:+254722517923">
+              <Button size="lg" variant="outline" className="bg-transparent text-white border-white/50 hover:bg-white hover:text-navy-900 transition-all" asChild>
+                <a href="tel:+254711409228">
                   <Phone className="mr-2 h-5 w-5" />
                   Call Now
                 </a>
@@ -379,7 +402,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-gray-600">
               <div className="flex items-center">
                 <Phone className="h-5 w-5 mr-2 text-loop-orange-600" />
-                <span>+254 722 517923</span>
+                <span>+254 711 409 228</span>
               </div>
               <div className="flex items-center">
                 <Mail className="h-5 w-5 mr-2 text-loop-orange-600" />

@@ -51,13 +51,6 @@ export const metadata: Metadata = {
     ],
     locale: "en_KE",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: site.name,
-    description:
-      "International commodity trading company specializing in petroleum products, precious metals, and minerals.",
-    images: ["/og/og-image.jpg"],
-  },
   icons: {
     icon: "/favicon.svg",
     apple: "/apple-touch-icon.png",

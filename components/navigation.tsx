@@ -23,7 +23,7 @@ const links = [
   { href: "/products", label: "Products" },
   { href: "/services", label: "Services" },
   { href: "/partners", label: "Partners" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 function NavLinks({

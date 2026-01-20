@@ -1,4 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card'
+import Image from 'next/image'
 import { Globe, Target, CheckCircle, Users, Award, Shield, Building } from 'lucide-react'
 import type { Metadata } from 'next'
 
@@ -42,14 +43,17 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section
-        className="relative py-24 overflow-hidden bg-navy-900 text-white"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(11, 37, 69, 0.7), rgba(11, 37, 69, 0.7)), url("/about-hero.png")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
+      <section className="relative py-24 overflow-hidden bg-navy-900 text-white">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/about-hero.png"
+            alt="About Loop Energy"
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-900/80 via-navy-900/40 to-navy-900/80" />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <h1 id="about-heading" className="text-4xl md:text-5xl font-bold mb-6">

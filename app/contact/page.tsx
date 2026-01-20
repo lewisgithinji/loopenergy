@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { MapPin, Phone, Mail, Clock, Globe, Building2, ArrowRight, Loader2, CheckCircle, AlertCircle } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, Globe, Building2, ArrowRight, Loader2, CheckCircle, AlertCircle, MessageCircle } from 'lucide-react'
 import { contactFormSchema, type ContactFormData } from '@/lib/validation'
 
 export default function ContactPage() {
@@ -108,8 +108,8 @@ export default function ContactPage() {
                       <div>
                         <h4 className="font-semibold text-navy-800 mb-1">Address</h4>
                         <p className="text-gray-600">
-                          DMCC Business Centre<br />
-                          Level 1, Jewellery & Gemplex 3<br />
+                          Business Center, Al Shmookh Bldg.<br />
+                          UAQ Free Trade Zone, Umm Al Quwain<br />
                           Dubai, United Arab Emirates
                         </p>
                       </div>
@@ -119,7 +119,7 @@ export default function ContactPage() {
                       <Phone className="h-5 w-5 text-loop-orange-600 mt-1" />
                       <div>
                         <h4 className="font-semibold text-navy-800 mb-1">Phone</h4>
-                        <p className="text-gray-600">+971 4 123 4567</p>
+                        <p className="text-gray-600">+254 722 517923</p>
                       </div>
                     </div>
 
@@ -127,7 +127,7 @@ export default function ContactPage() {
                       <Mail className="h-5 w-5 text-loop-orange-600 mt-1" />
                       <div>
                         <h4 className="font-semibold text-navy-800 mb-1">Email</h4>
-                        <p className="text-gray-600">dubai@loopenergyltd.com</p>
+                        <p className="text-gray-600">info@loopenergyltd.com</p>
                       </div>
                     </div>
 
@@ -171,9 +171,9 @@ export default function ContactPage() {
                       <div>
                         <h4 className="font-semibold text-navy-800 mb-1">Address</h4>
                         <p className="text-gray-600">
-                          Kindaruma Courts, Kindaruma Road<br />
-                          Nairobi, Kenya<br />
-                          P.O. Box 2596-20100, Nakuru, Kenya
+                          First Floor, NHC Building<br />
+                          Aghakhan Walk<br />
+                          P.O Box 51100-00100, Nairobi Kenya
                         </p>
                       </div>
                     </div>
@@ -183,8 +183,8 @@ export default function ContactPage() {
                       <div>
                         <h4 className="font-semibold text-navy-800 mb-1">Phone</h4>
                         <p className="text-gray-600">
-                          +254 722 517923<br />
-                          +254 731 624225
+                          +254 711 409 228<br />
+                          +254 722 517923
                         </p>
                       </div>
                     </div>
@@ -232,18 +232,18 @@ export default function ContactPage() {
                     <h4 className="font-semibold text-navy-800 mb-2">Trading Desk</h4>
                     <p className="text-sm text-gray-600 mb-3">Direct line to our trading team</p>
                     <Button size="sm" className="bg-loop-orange-600 hover:bg-loop-orange-700" asChild>
-                      <a href="tel:+254722517923">Call Nairobi</a>
+                      <a href="tel:+254711409228">Call Nairobi</a>
                     </Button>
                   </CardContent>
                 </Card>
 
-                <Card className="bg-navy-50 border-navy-200">
+                <Card className="bg-green-50 border-green-200">
                   <CardContent className="p-6 text-center">
-                    <Mail className="h-10 w-10 text-navy-600 mx-auto mb-3" />
-                    <h4 className="font-semibold text-navy-800 mb-2">Partnership Inquiry</h4>
-                    <p className="text-sm text-gray-600 mb-3">Strategic partnerships and collaboration</p>
-                    <Button size="sm" variant="outline" className="border-navy-300" asChild>
-                      <a href="mailto:partnerships@loopenergyltd.com">Send Email</a>
+                    <MessageCircle className="h-10 w-10 text-green-600 mx-auto mb-3" />
+                    <h4 className="font-semibold text-navy-800 mb-2">WhatsApp Chat</h4>
+                    <p className="text-sm text-gray-600 mb-3">Instant messaging for quick responses</p>
+                    <Button size="sm" className="bg-green-600 hover:bg-green-700" asChild>
+                      <a href="https://wa.me/254711409228" target="_blank" rel="noopener noreferrer">Message Us</a>
                     </Button>
                   </CardContent>
                 </Card>
@@ -315,8 +315,8 @@ export default function ContactPage() {
                           id="firstName"
                           {...register('firstName')}
                           className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.firstName
-                              ? 'border-red-500 focus:ring-red-500'
-                              : 'border-gray-300 focus:ring-loop-orange-500'
+                            ? 'border-red-500 focus:ring-red-500'
+                            : 'border-gray-300 focus:ring-loop-orange-500'
                             }`}
                         />
                         {errors.firstName && (
@@ -332,8 +332,8 @@ export default function ContactPage() {
                           id="lastName"
                           {...register('lastName')}
                           className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.lastName
-                              ? 'border-red-500 focus:ring-red-500'
-                              : 'border-gray-300 focus:ring-loop-orange-500'
+                            ? 'border-red-500 focus:ring-red-500'
+                            : 'border-gray-300 focus:ring-loop-orange-500'
                             }`}
                         />
                         {errors.lastName && (
@@ -352,8 +352,8 @@ export default function ContactPage() {
                           id="email"
                           {...register('email')}
                           className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.email
-                              ? 'border-red-500 focus:ring-red-500'
-                              : 'border-gray-300 focus:ring-loop-orange-500'
+                            ? 'border-red-500 focus:ring-red-500'
+                            : 'border-gray-300 focus:ring-loop-orange-500'
                             }`}
                         />
                         {errors.email && (
@@ -369,8 +369,8 @@ export default function ContactPage() {
                           id="phone"
                           {...register('phone')}
                           className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.phone
-                              ? 'border-red-500 focus:ring-red-500'
-                              : 'border-gray-300 focus:ring-loop-orange-500'
+                            ? 'border-red-500 focus:ring-red-500'
+                            : 'border-gray-300 focus:ring-loop-orange-500'
                             }`}
                         />
                         {errors.phone && (
@@ -388,8 +388,8 @@ export default function ContactPage() {
                         id="company"
                         {...register('company')}
                         className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.company
-                            ? 'border-red-500 focus:ring-red-500'
-                            : 'border-gray-300 focus:ring-loop-orange-500'
+                          ? 'border-red-500 focus:ring-red-500'
+                          : 'border-gray-300 focus:ring-loop-orange-500'
                           }`}
                       />
                       {errors.company && (
@@ -405,8 +405,8 @@ export default function ContactPage() {
                         id="service"
                         {...register('service')}
                         className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.service
-                            ? 'border-red-500 focus:ring-red-500'
-                            : 'border-gray-300 focus:ring-loop-orange-500'
+                          ? 'border-red-500 focus:ring-red-500'
+                          : 'border-gray-300 focus:ring-loop-orange-500'
                           }`}
                       >
                         <option value="">Select a service</option>
@@ -433,8 +433,8 @@ export default function ContactPage() {
                         {...register('message')}
                         placeholder="Please provide details about your requirements..."
                         className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.message
-                            ? 'border-red-500 focus:ring-red-500'
-                            : 'border-gray-300 focus:ring-loop-orange-500'
+                          ? 'border-red-500 focus:ring-red-500'
+                          : 'border-gray-300 focus:ring-loop-orange-500'
                           }`}
                       ></textarea>
                       {errors.message && (
@@ -486,12 +486,18 @@ export default function ContactPage() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
               <Button size="lg" className="bg-loop-orange-600 hover:bg-loop-orange-700" asChild>
-                <a href="tel:+254722517923">
+                <a href="tel:+254711409228">
                   <Phone className="mr-2 h-5 w-5" />
-                  Call Trading Desk
+                  Call Nairobi Office
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white hover:text-navy-800" asChild>
+              <Button size="lg" className="bg-green-600 hover:bg-green-700" asChild>
+                <a href="https://wa.me/254711409228" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  WhatsApp Us
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" className="bg-transparent border-white/50 text-white hover:bg-white hover:text-navy-900 transition-all" asChild>
                 <a href="mailto:trading@loopenergyltd.com">
                   <Mail className="mr-2 h-5 w-5" />
                   Email Trading Team
@@ -503,12 +509,12 @@ export default function ContactPage() {
               <div className="text-center">
                 <h3 className="text-lg font-semibold mb-2 text-loop-orange-400">Dubai Operations</h3>
                 <p className="text-gray-300 text-sm">Middle East trading hub</p>
-                <p className="text-gray-400 text-sm">+971 4 123 4567</p>
+                <p className="text-gray-400 text-sm">+254 722 517923</p>
               </div>
               <div className="text-center">
                 <h3 className="text-lg font-semibold mb-2 text-loop-orange-400">Nairobi Operations</h3>
                 <p className="text-gray-300 text-sm">African markets specialist</p>
-                <p className="text-gray-400 text-sm">+254 722 517923</p>
+                <p className="text-gray-400 text-sm">+254 711 409 228</p>
               </div>
             </div>
           </motion.div>

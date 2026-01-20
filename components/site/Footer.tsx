@@ -1,23 +1,22 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import {
-  Linkedin,
-  Twitter,
-  Youtube,
   Phone,
   Mail,
   MapPin,
   ExternalLink,
   FileText,
   BookOpen,
-  HelpCircle
+  HelpCircle,
+  ShieldCheck,
+  Globe2
 } from 'lucide-react'
 import { site } from '@/lib/content'
 import dynamic from 'next/dynamic'
 
 // Import floating background as client-only component
-const FloatingObjectsBackground = dynamic(() => import('./FloatingObjectsBackground'), { 
-  ssr: false 
+const FloatingObjectsBackground = dynamic(() => import('./FloatingObjectsBackground'), {
+  ssr: false
 })
 
 interface FooterProps {
@@ -47,26 +46,6 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
     { name: 'Partner Network', href: '/partners', icon: <HelpCircle className="h-4 w-4" /> }
   ]
 
-  const socialLinks = [
-    { 
-      name: 'LinkedIn', 
-      href: site.social.linkedin || '#', 
-      icon: <Linkedin className="h-5 w-5" />,
-      ariaLabel: 'Follow Loop Energy on LinkedIn' 
-    },
-    { 
-      name: 'Twitter', 
-      href: site.social.twitter || '#', 
-      icon: <Twitter className="h-5 w-5" />,
-      ariaLabel: 'Follow Loop Energy on Twitter' 
-    },
-    { 
-      name: 'YouTube', 
-      href: '#', 
-      icon: <Youtube className="h-5 w-5" />,
-      ariaLabel: 'Subscribe to Loop Energy YouTube channel' 
-    }
-  ]
 
 
   return (
@@ -100,14 +79,14 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
                 </Link>
               </div>
               <p className="text-gray-200 text-sm leading-relaxed max-w-xs">
-                Powering growth with clean energy & automation solutions across East Africa.
+                Global commodity trading hub managing high-quality refined petroleum, precious metals, and minerals.
               </p>
-              
+
               {/* Contact Info */}
               <div className="mt-8 space-y-3">
                 <div className="flex items-center text-gray-200">
                   <MapPin className="h-4 w-4 mr-3 text-loop-orange-400 flex-shrink-0" />
-                  <span className="text-sm">{site.contacts.address}</span>
+                  <span className="text-sm">Dubai, UAE | Nairobi, Kenya</span>
                 </div>
                 <div className="flex items-center text-gray-200">
                   <Phone className="h-4 w-4 mr-3 text-loop-orange-400 flex-shrink-0" />
@@ -120,7 +99,7 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
                 </div>
                 <div className="flex items-center text-gray-200">
                   <Mail className="h-4 w-4 mr-3 text-teal-400 flex-shrink-0" />
-                  <a 
+                  <a
                     href={`mailto:${site.contacts.email}`}
                     className="text-sm hover:text-white hover:underline hover:glow transition-all focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
                   >
@@ -150,51 +129,37 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
             </div>
 
             {/* Column 3: Resources */}
-            <div className="lg:col-span-1">
-              <h3 className="text-lg font-semibold text-white mb-6">Resources</h3>
-              <nav>
-                <ul className="space-y-3 mb-8">
-                  {resources.map((resource) => (
-                    <li key={resource.name}>
-                      <Link
-                        href={resource.href}
-                        className="flex items-center text-gray-200 hover:text-white hover:underline hover:glow transition-all text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
-                      >
-                        <span className="mr-2 text-teal-400">{resource.icon}</span>
-                        {resource.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-
-              {/* Social Links */}
+            <div className="space-y-8">
               <div>
-                <h4 className="text-sm font-semibold text-white mb-4">Follow Us</h4>
-                <div className="flex space-x-4">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.ariaLabel}
-                      className="text-gray-300 hover:text-teal-400 transition-colors p-2 rounded-full hover:bg-zinc-800/50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-black"
-                    >
-                      {social.icon}
-                    </a>
-                  ))}
-                  {/* WhatsApp Link */}
-                  <a
-                    href={site.contacts.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Contact Loop Energy on WhatsApp"
-                    className="text-gray-300 hover:text-green-400 transition-colors p-2 rounded-full hover:bg-zinc-800/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black"
-                  >
-                    <Phone className="h-5 w-5" />
-                  </a>
+                <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+                  <Globe2 className="h-5 w-5 mr-2 text-loop-orange-400" />
+                  Global Reach
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Nairobi, Kenya</span>
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Dubai, UAE</span>
                 </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+                  <ShieldCheck className="h-5 w-5 mr-2 text-loop-orange-400" />
+                  Compliance
+                </h3>
+                <ul className="space-y-2 text-sm text-gray-300">
+                  <li className="flex items-center">
+                    <span className="w-1 h-1 bg-loop-orange-400 rounded-full mr-2" />
+                    ISO 9001:2015 (Quality)
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-1 h-1 bg-loop-orange-400 rounded-full mr-2" />
+                    ISO 14001:2015 (Environment)
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-1 h-1 bg-loop-orange-400 rounded-full mr-2" />
+                    ISO 45001:2018 (H&S)
+                  </li>
+                </ul>
               </div>
             </div>
 
@@ -218,7 +183,7 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
                   Professional Advisory
                 </li>
               </ul>
-              
+
               <div className="space-y-4">
                 {/* Newsletter Signup */}
                 <form className="space-y-3">
@@ -240,7 +205,7 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
                     Stay updated on our global trading and logistics operations.
                   </p>
                 </form>
-                
+
                 <div className="flex space-x-2">
                   <Link
                     href="/contact"
@@ -267,13 +232,13 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
                   © {new Date().getFullYear()} {site.name}. All rights reserved.
                 </p>
                 <p className="text-gray-400 text-xs mt-1">
-                  Nairobi, Kenya
+                  Dubai, UAE | Nairobi, Kenya
                 </p>
                 <p className="text-gray-500 text-xs mt-2">
                   Designed by{' '}
-                  <a 
-                    href="https://www.datacare.co.ke" 
-                    target="_blank" 
+                  <a
+                    href="https://www.datacare.co.ke"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-loop-orange-400 hover:text-loop-orange-300 transition-colors"
                   >
@@ -281,7 +246,7 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
                   </a>
                 </p>
               </div>
-              
+
               <div className="flex items-center space-x-6 text-sm">
                 <Link
                   href="/trading"
