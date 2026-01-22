@@ -1,9 +1,51 @@
 const { checkRateLimit } = require('./rate-limiter');
-// We use a relative path since this is a Netlify function, 
-// which might require special handling during deployment/bundling.
-// In many Netlify setups, shared lib code is moved/bundled differently.
-// For now, let's keep it but note that we're aiming for consistency.
-const { contactFormSchema } = require('../../lib/validation');
+const { z } = require('zod');
+
+// Inline validation schema (Netlify Functions can't resolve ../../lib/validation)
+const contactFormSchema = z.object({
+  firstName: z.string()
+    .min(2, 'First name must be at least 2 characters')
+    .max(50, 'First name too long')
+    .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in first name'),
+
+  lastName: z.string()
+    .min(2, 'Last name must be at least 2 characters')
+    .max(50, 'Last name too long')
+    .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in last name'),
+
+  email: z.string()
+    .email('Invalid email address')
+    .max(100, 'Email too long')
+    .toLowerCase(),
+
+  phone: z.string()
+    .regex(/^[\d\s\-\+\(\)]+$/, 'Invalid phone number')
+    .min(10, 'Phone number too short')
+    .max(20, 'Phone number too long')
+    .optional()
+    .or(z.literal('')),
+
+  company: z.string()
+    .max(100, 'Company name too long')
+    .optional()
+    .or(z.literal('')),
+
+  service: z.enum([
+    'petroleum',
+    'precious-metals',
+    'minerals',
+    'logistics',
+    'partnerships',
+    'financial',
+    'other',
+    ''
+  ]).optional(),
+
+  message: z.string()
+    .min(10, 'Message must be at least 10 characters')
+    .max(2000, 'Message too long')
+    .trim(),
+});
 
 
 // CSRF Protection - Allowed origins
