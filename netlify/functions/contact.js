@@ -1,45 +1,20 @@
-const { z } = require('zod');
 const { checkRateLimit } = require('./rate-limiter');
+// We use a relative path since this is a Netlify function, 
+// which might require special handling during deployment/bundling.
+// In many Netlify setups, shared lib code is moved/bundled differently.
+// For now, let's keep it but note that we're aiming for consistency.
+const { contactFormSchema } = require('../../lib/validation');
 
-// Contact form validation schema (duplicated from lib/validation.ts for serverless function)
-const contactFormSchema = z.object({
-  firstName: z.string()
-    .min(2, 'First name must be at least 2 characters')
-    .max(50, 'First name too long')
-    .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in first name'),
-
-  lastName: z.string()
-    .min(2, 'Last name must be at least 2 characters')
-    .max(50, 'Last name too long')
-    .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in last name'),
-
-  email: z.string()
-    .email('Invalid email address')
-    .max(100, 'Email too long')
-    .toLowerCase(),
-
-  phone: z.string()
-    .regex(/^[\d\s\-\+\(\)]+$/, 'Invalid phone number')
-    .min(10, 'Phone number too short')
-    .max(20, 'Phone number too long')
-    .optional(),
-
-  company: z.string().max(100, 'Company name too long').optional(),
-
-  service: z.string().max(50).optional(),
-
-  message: z.string()
-    .min(10, 'Message must be at least 10 characters')
-    .max(2000, 'Message too long')
-    .trim(),
-});
 
 // CSRF Protection - Allowed origins
-const ALLOWED_ORIGINS = [
-  'https://loopenergy.netlify.app',
-  'https://loopenergy.co.ke',
-  'http://localhost:3000', // Development only
-];
+// CSRF Protection - Allowed origins
+const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : [
+    'https://loopenergy.co.ke',
+    'http://localhost:3000',
+  ];
+
 
 function validateOrigin(event) {
   const origin = event.headers.origin || event.headers.referer;
@@ -99,8 +74,8 @@ exports.handler = async (event, context) => {
 
     // Rate Limiting
     const clientIP = event.headers['x-forwarded-for'] ||
-                     event.headers['client-ip'] ||
-                     'unknown';
+      event.headers['client-ip'] ||
+      'unknown';
 
     const rateLimitResult = checkRateLimit(clientIP, 'contact');
 

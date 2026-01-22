@@ -95,9 +95,9 @@ export default function Navigation() {
           <Image
             src="/logo-clear.png"
             alt="Loop Energy"
-            width={252}
-            height={56}
-            className={`h-14 w-auto transition-all duration-500 ${isHomePage && !isScrolled
+            width={180}
+            height={64}
+            className={`h-16 w-auto transition-all duration-500 ${isHomePage && !isScrolled
               ? "drop-shadow-[0_0_15px_rgba(255,255,255,0.25)] brightness-110"
               : "brightness-100"
               }`}
@@ -130,9 +130,9 @@ export default function Navigation() {
                   <Image
                     src="/logo-clear.png"
                     alt="Loop Energy"
-                    width={198}
-                    height={44}
-                    className="h-11 w-auto"
+                    width={180}
+                    height={64}
+                    className="h-16 w-auto"
                   />
                 </SheetTitle>
               </SheetHeader>

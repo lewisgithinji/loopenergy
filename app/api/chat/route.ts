@@ -3,11 +3,14 @@ import { chatMessageSchema } from '@/lib/validation'
 import { safeError, logSecurityEvent } from '@/lib/error-handler'
 
 // CSRF Protection - Allowed origins
-const ALLOWED_ORIGINS = [
-  'https://loopenergy.netlify.app',
-  'https://loopenergy.co.ke',
-  'http://localhost:3000', // Development only
-];
+// CSRF Protection - Allowed origins
+const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : [
+    'https://loopenergy.co.ke',
+    'http://localhost:3000',
+  ];
+
 
 function validateOrigin(request: NextRequest): boolean {
   const origin = request.headers.get('origin');

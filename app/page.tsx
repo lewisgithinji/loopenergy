@@ -75,22 +75,18 @@ export default function HomePage() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900">
         {/* Background Images with Transition */}
         {heroImages.map((image, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-          >
+          <div key={index} className="absolute inset-0 z-0">
             <Image
               src={image.src}
               alt={image.alt}
               fill
-              className="object-cover"
+              className={`object-cover transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                }`}
               priority={index === 0}
-              quality={90}
             />
           </div>
         ))}
-        <div className="absolute inset-0 z-10 bg-gradient-to-br from-navy-900/80 via-navy-800/60 to-black/50"></div>
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-navy-950/90 via-navy-900/75 to-black/70"></div>
 
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -391,7 +387,7 @@ export default function HomePage() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="bg-transparent text-white border-white/50 hover:bg-white hover:text-navy-900 transition-all" asChild>
+              <Button size="lg" variant="outline" className="border-navy-800 text-navy-800 hover:bg-navy-800 hover:text-white transition-all" asChild>
                 <a href="tel:+254711409228">
                   <Phone className="mr-2 h-5 w-5" />
                   Call Now

@@ -24,7 +24,7 @@ export default function Error({
                 </div>
                 <h1 className="text-3xl md:text-4xl font-bold mb-6">Something went wrong</h1>
                 <p className="text-xl text-gray-300 mb-12">
-                    An unexpected error occurred. We've been notified and are working on a fix.
+                    An unexpected error occurred. We&apos;ve been notified and are working on a fix.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <Button size="lg" className="bg-loop-orange-600 hover:bg-loop-orange-700 w-full sm:w-auto" onClick={() => reset()}>

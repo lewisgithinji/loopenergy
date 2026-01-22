@@ -43,21 +43,21 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative py-24 overflow-hidden bg-navy-900 text-white">
+      <section className="relative py-24 overflow-hidden bg-navy-950 text-white">
         <div className="absolute inset-0 z-0">
           <Image
             src="/about-hero.png"
             alt="About Loop Energy"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-40"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-900/80 via-navy-900/40 to-navy-900/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900/80 to-navy-950/95" />
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 id="about-heading" className="text-4xl md:text-5xl font-bold mb-6">
-              About Loop Energy Limited
+            <h1 id="about-heading" className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              About <span className="text-loop-orange-400">Loop Energy Limited</span>
             </h1>
             <p className="text-xl text-gray-200">
               A dynamic trading company founded in 2014 and incorporated in 2018,

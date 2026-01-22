@@ -12,7 +12,7 @@ export default function NotFound() {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Page Not Found</h2>
                 <p className="text-xl text-gray-300 mb-12">
                     The page you are looking for might have been moved, deleted, or never existed.
-                    Let's get you back on track.
+                    Let&apos;s get you back on track.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <Button size="lg" className="bg-loop-orange-600 hover:bg-loop-orange-700 w-full sm:w-auto" asChild>

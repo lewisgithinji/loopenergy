@@ -72,9 +72,9 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
                   <Image
                     src="/logo-clear.png"
                     alt="Loop Energy"
-                    width={160}
-                    height={36}
-                    className="h-9 w-auto"
+                    width={180}
+                    height={64}
+                    className="h-16 w-auto"
                   />
                 </Link>
               </div>

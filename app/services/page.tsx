@@ -20,6 +20,7 @@ import {
   Target
 } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const services = [
   {
@@ -144,22 +145,26 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section
-        className="relative py-24 overflow-hidden bg-navy-900 text-white"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(11, 37, 69, 0.7), rgba(11, 37, 69, 0.7)), url("/services-hero.png")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 bg-navy-950 text-white overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/services-hero.png"
+            alt="Professional Trading Services"
+            fill
+            className="object-cover opacity-40"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900/80 to-navy-950/95" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
                 Professional Trading
                 <br />
                 <span className="text-loop-orange-400">Services</span>

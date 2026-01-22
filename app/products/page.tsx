@@ -19,6 +19,8 @@ import {
   Star
 } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
+
 
 const productCategories = [
   {
@@ -26,7 +28,7 @@ const productCategories = [
     title: 'Refined Petroleum Products',
     icon: Fuel,
     description: 'High-quality refined petroleum products meeting international standards',
-    image: '/refined-petroleum.png',
+    image: '/refined-petroleum-v2.png',
     products: [
       {
         name: 'Gasoline (RON 92 to RON 95)',
@@ -200,15 +202,17 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-navy-900 text-white overflow-hidden">
+      <section className="relative py-20 bg-navy-950 text-white overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/products-hero.png"
             alt="Global Commodity Trading"
-            className="w-full h-full object-cover opacity-60"
+            fill
+            className="object-cover opacity-60"
+            priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-900/90 to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -218,7 +222,7 @@ export default function ProductsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
                 Premium Product
                 <br />
                 <span className="text-loop-orange-400">Portfolio</span>
@@ -325,9 +329,10 @@ export default function ProductsPage() {
 
                 {/* Category Image */}
                 <div className="relative h-64 md:h-96 rounded-lg overflow-hidden mb-12">
-                  <img
+                  <Image
                     src={category.image}
                     alt={category.title}
+                    fill
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-900/70 to-transparent" />

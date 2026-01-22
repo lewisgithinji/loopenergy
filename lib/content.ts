@@ -12,6 +12,7 @@ export const site = {
   contacts: {
     phone: "+254711409228",
     email: "info@loopenergyltd.com",
+    address: "First Floor, NHC Building, Aghakhan Walk, P.O Box 51100-00100, Nairobi Kenya.",
     whatsappUrl: "https://wa.me/254711409228",
     locations: {
       kenya: {
@@ -190,3 +191,49 @@ export const partnerships = {
     "Terminal Operators"
   ]
 };
+
+export const hse = {
+  pillars: [
+    {
+      title: "Health & Safety",
+      description: "We implement rigorous health and safety protocols to ensure a zero-harm environment for all stakeholders."
+    },
+    {
+      title: "Environmental Stewardship",
+      description: "Our operations are designed to minimize environmental impact and promote sustainability."
+    },
+    {
+      title: "Social Responsibility",
+      description: "We actively engage with and support the communities where we operate."
+    },
+    {
+      title: "Excellence in Quality",
+      description: "Highest quality standards are maintained across all our trading and operational activities."
+    }
+  ],
+  certifications: ["ISO 9001:2015", "ISO 14001:2015", "ISO 45001:2018"]
+};
+
+export const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": site.name,
+  "url": site.url,
+  "logo": `${site.url}${site.logo}`,
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": site.contacts.phone,
+      "contactType": "customer service",
+      "areaServed": ["KE", "AE"],
+      "availableLanguage": ["English", "Swahili"]
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": site.contacts.locations.kenya.address,
+    "addressLocality": "Nairobi",
+    "addressCountry": "KE"
+  }
+};
+
