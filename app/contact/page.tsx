@@ -29,16 +29,26 @@ export default function ContactPage() {
     setErrorMessage('')
 
     try {
-      const response = await fetch('/.netlify/functions/contact', {
+      const formData = new FormData()
+      Object.entries(data).forEach(([key, value]) => {
+        formData.append(key, value)
+      })
+      formData.append('access_key', 'b5335568-9214-4ee4-8587-0e5544ebf933')
+      formData.append('from_name', 'Loop Energy Contact Form')
+      formData.append('subject', 'New Contact Form Submission - Loop Energy')
+
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: formData,
       })
 
       const result = await response.json()
 
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to send message')
+      if (!result.success) {
+        throw new Error(result.message || 'Failed to send message')
       }
 
       setSubmissionState('success')
@@ -309,6 +319,9 @@ export default function ContactPage() {
                         <span>{errorMessage || 'Failed to send message. Please try again.'}</span>
                       </div>
                     )}
+
+                    {/* Honeypot Field */}
+                    <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>

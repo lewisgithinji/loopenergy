@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { site } from '@/lib/content'
 import dynamic from 'next/dynamic'
+import NewsletterForm from './NewsletterForm'
 
 // Import floating background as client-only component
 const FloatingObjectsBackground = dynamic(() => import('./FloatingObjectsBackground'), {
@@ -184,89 +185,68 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
                 </li>
               </ul>
 
-              <div className="space-y-4">
-                {/* Newsletter Signup */}
-                <form className="space-y-3">
-                  <div className="flex space-x-2">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="flex-1 px-3 py-2 bg-white/10 border border-white/20 text-white placeholder:text-gray-400 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-                      required
-                    />
-                    <button
-                      type="submit"
-                      className="px-4 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-black"
-                    >
-                      Subscribe
-                    </button>
-                  </div>
-                  <p className="text-[10px] text-gray-500 italic">
-                    Stay updated on our global trading and logistics operations.
-                  </p>
-                </form>
+              <NewsletterForm />
 
-                <div className="flex space-x-2">
-                  <Link
-                    href="/contact"
-                    className="flex-1 inline-flex items-center justify-center px-3 py-2 bg-white/10 border border-white/20 text-gray-200 text-xs font-medium rounded-lg hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-black"
-                  >
-                    Contact
-                  </Link>
-                  <Link
-                    href="/products"
-                    className="flex-1 inline-flex items-center justify-center px-3 py-2 bg-white/10 border border-white/20 text-gray-200 text-xs font-medium rounded-lg hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-black"
-                  >
-                    Products
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="mt-16 pt-8 border-t border-gray-600">
-            <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
-              <div className="text-center lg:text-left">
-                <p className="text-gray-300 text-sm">
-                  © {new Date().getFullYear()} {site.name}. All rights reserved.
-                </p>
-                <p className="text-gray-400 text-xs mt-1">
-                  Dubai, UAE | Nairobi, Kenya
-                </p>
-                <p className="text-gray-500 text-xs mt-2">
-                  Designed by{' '}
-                  <a
-                    href="https://www.datacare.co.ke"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-loop-orange-400 hover:text-loop-orange-300 transition-colors"
-                  >
-                    DataCare
-                  </a>
-                </p>
-              </div>
-
-              <div className="flex items-center space-x-6 text-sm">
+              <div className="flex space-x-2">
                 <Link
-                  href="/trading"
-                  className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
+                  href="/contact"
+                  className="flex-1 inline-flex items-center justify-center px-3 py-2 bg-white/10 border border-white/20 text-gray-200 text-xs font-medium rounded-lg hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-black"
                 >
-                  Trading
+                  Contact
                 </Link>
                 <Link
                   href="/products"
-                  className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
+                  className="flex-1 inline-flex items-center justify-center px-3 py-2 bg-white/10 border border-white/20 text-gray-200 text-xs font-medium rounded-lg hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-black"
                 >
                   Products
                 </Link>
-                <Link
-                  href="/partners"
-                  className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
-                >
-                  Partners
-                </Link>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-16 pt-8 border-t border-gray-600">
+          <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+            <div className="text-center lg:text-left">
+              <p className="text-gray-300 text-sm">
+                © {new Date().getFullYear()} {site.name}. All rights reserved.
+              </p>
+              <p className="text-gray-400 text-xs mt-1">
+                Dubai, UAE | Nairobi, Kenya
+              </p>
+              <p className="text-gray-500 text-xs mt-2">
+                Designed by{' '}
+                <a
+                  href="https://www.datacare.co.ke"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-loop-orange-400 hover:text-loop-orange-300 transition-colors"
+                >
+                  DataCare
+                </a>
+              </p>
+            </div>
+
+            <div className="flex items-center space-x-6 text-sm">
+              <Link
+                href="/trading"
+                className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
+              >
+                Trading
+              </Link>
+              <Link
+                href="/products"
+                className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
+              >
+                Products
+              </Link>
+              <Link
+                href="/partners"
+                className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
+              >
+                Partners
+              </Link>
             </div>
           </div>
         </div>
