@@ -20,18 +20,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'Premium Product Portfolio | Loop Energy Limited',
-  description: 'Comprehensive range of refined petroleum products, precious metals, minerals, and by-products. Trade gasoline, gas oil, fuel oil, jet fuel, bitumen, gold, silver, copper, and more.',
-  keywords: ['refined petroleum products', 'precious metals trading', 'minerals trading', 'gasoline', 'gas oil', 'fuel oil', 'jet fuel', 'bitumen', 'gold bars', 'silver bars', 'copper cathodes', 'aluminum ingots', 'tanzanite', 'sulphur', 'urea', 'FOB', 'CIF'],
-  openGraph: {
-    title: 'Premium Product Portfolio | Loop Energy Limited',
-    description: 'High-quality commodities traded through our global network with reliable supply and competitive pricing.',
-    type: 'website',
-  },
-}
 
 const productCategories = [
   {
@@ -207,8 +196,8 @@ export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState('')
 
   const filteredCategories = selectedCategory === 'all'
-    ? product Categories
-      : productCategories.filter(cat => cat.id === selectedCategory)
+    ? productCategories
+    : productCategories.filter(cat => cat.id === selectedCategory)
 
   return (
     <div className="min-h-screen">

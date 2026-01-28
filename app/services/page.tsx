@@ -21,18 +21,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'Professional Trading Services | Loop Energy Limited',
-  description: 'Comprehensive trading solutions including operations management, logistics, financial structuring, transaction advisory, and commodity sourcing services for global markets.',
-  keywords: ['commodity trading services', 'logistics management', 'financial advisory', 'transaction advisory', 'operations management', 'supply chain optimization', 'trade finance', 'letters of credit', 'commodity sourcing'],
-  openGraph: {
-    title: 'Professional Trading Services | Loop Energy Limited',
-    description: 'Expert trading solutions and advisory services for commodity trading operations.',
-    type: 'website',
-  },
-}
 
 
 const services = [

@@ -1,5 +1,3 @@
-'use client'
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Scale, FileText, AlertTriangle, CheckCircle, Mail, MapPin } from 'lucide-react'
 import { site } from '@/lib/content'

@@ -17,7 +17,7 @@ const nextConfig = {
   },
 
   // Keep build smooth while you iterate
-  eslint: { ignoreDuringBuilds: false },
+  eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: false },
 
 

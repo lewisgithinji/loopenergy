@@ -27,18 +27,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'Global Partnership Network | Loop Energy Limited',
-  description: 'Strategic partnerships with refineries, international banks, shipping lines, terminal operators, and logistics providers across Africa, UAE, and Europe for comprehensive trading solutions.',
-  keywords: ['strategic partnerships', 'refinery partnerships', 'trade finance', 'shipping lines', 'terminal operators', 'logistics partners', 'mineral suppliers', 'global network', 'commodity trading partnerships'],
-  openGraph: {
-    title: 'Global Partnership Network | Loop Energy Limited',
-    description: 'Building strong alliances with industry leaders for exceptional commodity trading value.',
-    type: 'website',
-  },
-}
 
 
 const partnerTypes = [
