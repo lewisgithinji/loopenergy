@@ -17,6 +17,19 @@ import {
   Truck
 } from 'lucide-react'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Global Commodity Trading | Loop Energy Limited',
+  description: 'Expert commodity trading services with FOB and CIF terms. Trading refined petroleum, precious metals, and minerals across Africa, UAE, and Europe with strategic partnerships.',
+  keywords: ['commodity trading', 'FOB trading', 'CIF trading', 'petroleum trading', 'precious metals trading', 'mineral trading', 'international trade', 'commodity sourcing', 'Rotterdam', 'Fujairah', 'global markets'],
+  openGraph: {
+    title: 'Global Commodity Trading | Loop Energy Limited',
+    description: 'Efficient and transparent commodity trading services across diverse portfolios with global market reach.',
+    type: 'website',
+  },
+}
+
 
 const tradingCapabilities = [
   {

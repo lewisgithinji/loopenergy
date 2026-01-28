@@ -6,7 +6,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/site/Footer";
 // import SupportChat from "@/components/support-chat";
 import Script from "next/script";
-import { orgJsonLd, site } from "@/lib/content";
+import { orgJsonLd, nairobiOfficeJsonLd, dubaiOfficeJsonLd, websiteJsonLd, site } from "@/lib/content";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -69,6 +69,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Organization JSON-LD (single source of truth from lib/content) */}
         <Script id="ld-org" type="application/ld+json">
           {JSON.stringify(orgJsonLd)}
+        </Script>
+
+        {/* LocalBusiness JSON-LD for Nairobi Office */}
+        <Script id="ld-nairobi" type="application/ld+json">
+          {JSON.stringify(nairobiOfficeJsonLd)}
+        </Script>
+
+        {/* LocalBusiness JSON-LD for Dubai Office */}
+        <Script id="ld-dubai" type="application/ld+json">
+          {JSON.stringify(dubaiOfficeJsonLd)}
+        </Script>
+
+        {/* WebSite JSON-LD for search functionality */}
+        <Script id="ld-website" type="application/ld+json">
+          {JSON.stringify(websiteJsonLd)}
         </Script>
       </body>
     </html>

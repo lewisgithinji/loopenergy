@@ -228,24 +228,24 @@ export default function Footer({ overlay = 'gradient' }: FooterProps) {
               </p>
             </div>
 
-            <div className="flex items-center space-x-6 text-sm">
+            <div className="flex flex-wrap items-center justify-center lg:justify-end gap-4 lg:gap-6 text-sm">
               <Link
-                href="/trading"
+                href="/privacy"
                 className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
               >
-                Trading
+                Privacy Policy
               </Link>
               <Link
-                href="/products"
+                href="/terms"
                 className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
               >
-                Products
+                Terms of Service
               </Link>
               <Link
-                href="/partners"
+                href="/compliance"
                 className="text-gray-300 hover:text-white hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-loop-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm"
               >
-                Partners
+                Compliance
               </Link>
             </div>
           </div>

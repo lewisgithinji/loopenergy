@@ -20,7 +20,18 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import type { Metadata } from 'next'
 
+export const metadata: Metadata = {
+  title: 'Premium Product Portfolio | Loop Energy Limited',
+  description: 'Comprehensive range of refined petroleum products, precious metals, minerals, and by-products. Trade gasoline, gas oil, fuel oil, jet fuel, bitumen, gold, silver, copper, and more.',
+  keywords: ['refined petroleum products', 'precious metals trading', 'minerals trading', 'gasoline', 'gas oil', 'fuel oil', 'jet fuel', 'bitumen', 'gold bars', 'silver bars', 'copper cathodes', 'aluminum ingots', 'tanzanite', 'sulphur', 'urea', 'FOB', 'CIF'],
+  openGraph: {
+    title: 'Premium Product Portfolio | Loop Energy Limited',
+    description: 'High-quality commodities traded through our global network with reliable supply and competitive pricing.',
+    type: 'website',
+  },
+}
 
 const productCategories = [
   {
@@ -72,7 +83,7 @@ const productCategories = [
     title: 'Precious Metals',
     icon: Award,
     description: 'High-purity Gold and Silver Bars with certified quality and authentication',
-    image: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-4.0.3&autoformat&fit=crop&w=800&q=80',
     products: [
       {
         name: 'High-Purity Gold Bars',
@@ -196,8 +207,8 @@ export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState('')
 
   const filteredCategories = selectedCategory === 'all'
-    ? productCategories
-    : productCategories.filter(cat => cat.id === selectedCategory)
+    ? product Categories
+      : productCategories.filter(cat => cat.id === selectedCategory)
 
   return (
     <div className="min-h-screen">

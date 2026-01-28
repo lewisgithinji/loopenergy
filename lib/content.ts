@@ -220,20 +220,176 @@ export const orgJsonLd = {
   "name": site.name,
   "url": site.url,
   "logo": `${site.url}${site.logo}`,
+  "description": "International commodity trading company specializing in refined petroleum products, precious metals, and minerals. Operating from Dubai and Kenya since 2014.",
+  "foundingDate": "2014",
+  "email": site.contacts.email,
+  "telephone": site.contacts.phone,
   "contactPoint": [
     {
       "@type": "ContactPoint",
-      "telephone": site.contacts.phone,
+      "telephone": site.contacts.locations.kenya.phone,
       "contactType": "customer service",
-      "areaServed": ["KE", "AE"],
-      "availableLanguage": ["English", "Swahili"]
+      "areaServed": ["KE", "TZ", "UG", "RW", "ET"],
+      "availableLanguage": ["English", "Swahili"],
+      "description": "Africa Regional Office"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": site.contacts.locations.dubai.phone,
+      "contactType": "customer service",
+      "areaServed": ["AE", "SA", "OM", "QA", "KW"],
+      "availableLanguage": ["English", "Arabic"],
+      "description": "Middle East Regional Office"
     }
   ],
+  "address": [
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "First Floor, NHC Building, Aghakhan Walk",
+      "addressLocality": "Nairobi",
+      "postalCode": "00100",
+      "postOfficeBoxNumber": "51100-00100",
+      "addressCountry": "KE"
+    },
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "Business Center, Al Shmookh Bldg., UAQ Free Trade Zone",
+      "addressLocality": "Umm Al Quwain",
+      "addressRegion": "Dubai",
+      "addressCountry": "AE"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Commodity Trading Products",
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "name": "Refined Petroleum Products",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Gasoline (RON 92-95)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Gas Oil (2500PPM-10PPM)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Fuel Oil (RMG 180/380)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Jet A-1 Fuel" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Bitumen (30/40-80/100)" } }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Precious Metals",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "High-Purity Gold Bars" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "High-Purity Silver Bars" } }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Minerals",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Copper Cathodes" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Copper Concentrate" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Aluminum Ingots" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Tanzanite" } }
+        ]
+      }
+    ]
+  },
+  "areaServed": [
+    { "@type": "Country", "name": "Kenya" },
+    { "@type": "Country", "name": "United Arab Emirates" },
+    { "@type": "Country", "name": "Tanzania" },
+    { "@type": "Country", "name": "Uganda" },
+    { "@type": "Country", "name": "Rwanda" },
+    { "@type": "Country", "name": "Ethiopia" },
+    { "@type": "Country", "name": "Saudi Arabia" },
+    { "@type": "Country", "name": "Oman" },
+    { "@type": "Country", "name": "Netherlands" },
+    { "@type": "Country", "name": "Singapore" }
+  ]
+};
+
+// LocalBusiness schema for Nairobi office
+export const nairobiOfficeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Loop Energy Limited - Nairobi Office",
+  "image": `${site.url}${site.logo}`,
+  "url": site.url,
+  "telephone": site.contacts.locations.kenya.phone,
+  "email": site.contacts.email,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": site.contacts.locations.kenya.address,
+    "streetAddress": "First Floor, NHC Building, Aghakhan Walk",
     "addressLocality": "Nairobi",
+    "postalCode": "00100",
+    "postOfficeBoxNumber": "51100-00100",
     "addressCountry": "KE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -1.2864,
+    "longitude": 36.8172
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "08:00",
+    "closes": "17:00"
+  },
+  "priceRange": "$$$$",
+  "areaServed": ["Kenya", "East Africa"]
+};
+
+// LocalBusiness schema for Dubai office
+export const dubaiOfficeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Loop Energy Limited - Dubai Office",
+  "image": `${site.url}${site.logo}`,
+  "url": site.url,
+  "telephone": site.contacts.locations.dubai.phone,
+  "email": site.contacts.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Business Center, Al Shmookh Bldg., UAQ Free Trade Zone",
+    "addressLocality": "Umm Al Quwain",
+    "addressRegion": "Dubai",
+    "addressCountry": "AE"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+    "opens": "08:00",
+    "closes": "17:00"
+  },
+  "priceRange": "$$$$",
+  "areaServed": ["United Arab Emirates", "Middle East"]
+};
+
+// WebSite schema for search functionality
+export const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": site.name,
+  "url": site.url,
+  "description": "International commodity trading company specializing in refined petroleum products, precious metals, and minerals.",
+  "publisher": {
+    "@type": "Organization",
+    "name": site.name,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${site.url}${site.logo}`
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${site.url}/products?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
   }
 };
+
+
 

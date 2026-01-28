@@ -15,16 +15,24 @@
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-    # Content Security Policy - Protects against XSS attacks
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data:; connect-src 'self' https://api.anthropic.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+    # Content Security Policy - Enhanced for Web3Forms and external resources
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://web3forms.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: blob: https://images.unsplash.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.web3forms.com https://api.anthropic.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests;"
 
-    # HTTP Strict Transport Security - Enforces HTTPS
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    # HTTP Strict Transport Security - Enforces HTTPS with preload
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
 
     # Permissions Policy - Restricts browser features
-    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()"
+
+    # Additional security headers
+    X-Permitted-Cross-Domain-Policies = "none"
+    Cross-Origin-Embedder-Policy = "require-corp"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "same-origin"
+
 
 [[headers]]
   for = "/images/*"
